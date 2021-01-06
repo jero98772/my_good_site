@@ -1,0 +1,98 @@
+{% extends "wwwof/template.html" %}
+{% block content%}
+<h1>DRAWFISHTANK</h1>
+
+<p>DRAWFISHTANK is a proyect for draw a possible forms of fishtank can be easy to calcuate and draw 
+DRAWFISHTANK is a part of proyects of wwwofish <a href="https://github.com/jero98772/wwwofish">wwwofish git repo</a></p>
+
+<h1>requirements included (P5js)</h1>
+
+<p>p5js is  incluide in hyperlink</p>
+
+<h1>barnchs</h1>
+
+<h3>master</h3>
+
+<p>depend of setInterval() for reload animation</p>
+
+<h3>how to install</h3>
+
+<pre><code>  git clone  https://github.com/jero98772/dibujo_acuario_p5js.git
+</code></pre>
+
+<h3>español</h3>
+
+<p>have some things in spanish like <em>letter_for_science_fair</em> and depend of setInterval() for reload animation</p>
+
+<h3>how to install</h3>
+
+<pre><code>   git clone -b español  https://github.com/jero98772/dibujo_acuario_p5js.git
+</code></pre>
+
+<h4>how to run and use</h4>
+
+<p>execute  drawFISHTANK.html and the program open will be ask you  the inputs to calculate depedes of drop-down list </p>
+
+<h2>esp32<em>server</em>to_expose</h2>
+
+<p>is maded for make the presentation of science fair more interactive work without p5js </p>
+
+<h4>how to install</h4>
+
+<pre><code>  git clone -b esp32_server_to_expose  https://github.com/jero98772/dibujo_acuario_p5js.git
+</code></pre>
+
+<h4>what i need</h4>
+
+<p>you need a esp32 and arduino ide</p>
+
+<h4>upload to esp32</h4>
+
+<p>this video can help you <a href="https://www.youtube.com/watch?v=2DL8FlrBTDs">youtube</a>
+go to preferences and add in "additional boards manage URLs"  this </p>
+
+<pre><code>https://dl.espressif.com/dl/package_esp32_index.json, http://arduino.esp8266.com/stable/package_esp8266com_index.json
+</code></pre>
+
+<p>this is for you can download borad and libraris in esp32 </p>
+
+<p>go to boards and search esp32 and download</p>
+
+<p>and you need WiFi.h to generate a network (if you need install go to manage libaris and search and install)</p>
+
+<p>verify that all working and click in upload</p>
+
+<h4>how run and use</h4>
+
+<p>upload file "esp32<em>server</em>to<em>expose" default to esp32 with before configurations and conenct to wifi of esp32 (default wifi are "feria</em>ciencias_volumenes")the program open will be ask you  the inputs </p>
+
+<h2>drawFISHTANK(here)</h2>
+
+<p>this have is made in OOP for not use the fuction setInterval() for reload page</p>
+
+<h4>how to install</h4>
+
+<pre><code> git clone -b drawFISHTANK  https://github.com/jero98772/dibujo_acuario_p5js.git
+</code></pre>
+
+<h4>how  run and use</h4>
+
+<p>execute  drawFISHTANK.html and the program open will be ask you  the inputs to calculate depedes of drop-down list </p>
+
+<h1>what i can calculate  with drop-down list</h1>
+
+<h2>figures with form like</h2>
+
+<p>cubic --> (a pow 2)/1000 = volumen in liters</p>
+
+<p>rectagle --> (side1 * side2 * side3)/1000 = volume in liters </p>
+
+<p>triangle --> (((base * base_heigth)/2) * Heigth)/1000 = volume in liters</p>
+
+<p>cylinder --> (3.141592653592 * Radio * Heigth)/1000 = volume in liters</p>
+
+<h3>contributes with donations</h3>
+
+<pre><code>- Bitcoin: tb1qgt4trnnsxdmfcpnydkmk8ht0y4esg4cdvzmhaz
+</code></pre>
+{% endblock %}

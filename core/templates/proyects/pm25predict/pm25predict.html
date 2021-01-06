@@ -1,0 +1,46 @@
+{% extends  'proyects/template.html'%}
+{% block content %}
+<h1>pm25 predict</h1>
+<hr>
+<a href="/proyects/pm25predict/pm25predictUnloquer.html">unloquer senors</a>
+<iframe width="560" height="315" src="/proyects/pm25predict/pm25predictUnloquer.html" >
+	
+</iframe>
+<hr>
+<a href="/proyects/pm25predict/pm25predictCanairio.html">canairio senors</a>
+<iframe width="560" height="315" src="/proyects/pm25predict/pm25predictCanairio.html" >
+	
+</iframe>
+<!--you dont see this tanks bye bye :-) -->
+<!--
+<img src="{{ url_for('static', filename='proyects/img/prediction.png')}}" height="500" width="500">
+<img src="{{ url_for('static', filename='proyects/img/prediction.png')}}" height="500" width="500">
+<input type="hidden" value="{{pm25}}" id="pm25">
+<input type="hidden"  value="{{pred}}" id="pred">
+<input type="hidden"  value="{{moment}}" id="moment">
+
+<canvas id="pm25pred" width="400" height="200"></canvas>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script>
+var pm25 = document.getElementById('pm25').value;
+var moment = document.getElementById('moment').value;
+var y = document.getElementById('pred').value;
+console.log("pm25",pm25);
+console.log("pred",y);
+console.log("moment",moment);
+//var canvasforchart = document.querySelector('#pm25pred').getContext('2d');
+var canvasforchart = document.getElementById('pm25pred').getContext('2d');
+
+var chart = new Chart(canvasforchart ,{
+	type:"line",
+	data:{
+		labels:moment*2,
+		datasets:[
+			{label:"pm25 ",
+			data:pm25},
+
+		]	
+		}});
+</script> 
+-->
+{% endblock  %}

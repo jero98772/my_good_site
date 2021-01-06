@@ -1,0 +1,26 @@
+	{% extends  'proyects/template.html'%}
+{% block content %}
+<form action="/proyects/gas/actualisar{{purchase.0}}" method="POST" enctype="multipart/form-data">
+	<table style=" width:100%;" border="1">
+		<tr>
+			
+			<td><h2>articulo</h2></td>
+			<td><h2>categoria del articulo</h2></td>
+			<td><h2>precio</h2></td>
+			<td><h2>fecha cuando ingreso el pago</h2></td>
+			<td><h2>foto [NO ESTA HABILITADO DEBIDO AL POCO ESPACIO]</h2></td>
+		</tr>
+		<tr>
+			<td><input type="text" name="thing" placeholder="articulo en la que se gasto" value="{{purchase.2}}"></td>
+			<td><input type="text" name="category" placeholder="categoria del articulo" autocomplete="on" value="{{purchase.3}}"></td>
+			<td><input type="text" name="price" placeholder="precio de la cosa" value="{{purchase.1}}" ></td>
+			<td><input type="text" name="moment" placeholder="fecha cuando ingreso el pago" value="{{purchase.4}}"></td>
+			<td><input type="file" name="img_factura" placeholder="foto factura" ></td>
+
+		</tr>
+	</table>
+<button type="summit ">summit </button>
+
+
+</form>
+{% endblock %}

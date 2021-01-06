@@ -1,0 +1,73 @@
+{% extends  'template.html'%}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+
+  </head>
+  <body>
+    <!--p>username</p>
+    <input id="user" type="text" value="">
+    <input id="send" type="submit" value="Send">
+    <center>
+    <div class="ChatSO">
+    <div>
+      
+      
+    
+      <p id="messages"></p>
+    
+    <input id="myMessage" type="text" value="">
+    </div>
+    <div>
+      <p id="users"> </p>
+    </div>
+    </div>
+    </center>
+    <script
+      src="http://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+  <script>
+   
+
+     
+    const socket = io()
+        /*
+    usr=document.getElementById('user').value;
+    users=document.getElementById('users')
+    users.innerHTML = usr
+    */
+
+
+    socket.emit('message', ["jero98772",'welcome to my blog and this is a chat'])
+
+    socket.on('message', function(msg) {
+
+    $('#messages').append('<br> '+msg[0]+'->:'+msg[1] +"")
+    })
+
+    $('#send').on('click', function() {
+      socket.send([$('#user').val(),$('#myMessage').val()]);
+      $('#myMessage').val('');
+
+    })
+
+  </script-->
+    <!---->
+    <center>
+      
+    <h1> irc for chat with me  i disdabe ChatSO because make this slow</h1>
+    <br>
+    this is a good alternaiteve to chatSO (this is kiwiIRC not ChatSO)
+    <br>
+    <iframe width="600" height="300" src="https://kiwiirc.com/nextclient/irc.freenode.net/#jero98772"></iframe>
+    </center>
+    <h1>how use</h1>
+    <br>
+    put your user name and if your have a passoword put if not have not is requiered
+</body>
+</html>
+{% endblock %}

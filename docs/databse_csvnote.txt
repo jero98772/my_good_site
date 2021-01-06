@@ -1,0 +1,19 @@
+can create wwwof databasecsv with
+and sqlite 3
+CREATE TABLE "fishes" (
+	"id"	INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+	"common_name"	text,
+	"scientific_name"	text,
+	"ph"	float,
+	"h"	float,
+	"liters"	float,
+	"cm"	float,
+	"tempC"	float,
+	"food"	text,
+	"reproduction"	text,
+	"temperament"	text,
+	"livingEnv"	text,
+	"swim"	text,
+	"location"	text,
+	"description"	text
+);

@@ -1,0 +1,10 @@
+.codeIt{
+	background-color: rgba(0,0,0,0.5);
+	width: 90%;
+	height: auto;
+	margin: auto;
+	border:  5px solid rgba(0,0,0,0.7);
+	font-size: 15px;
+	line-height: auto;
+
+}

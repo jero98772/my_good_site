@@ -1,0 +1,19 @@
+{% extends  'proyects/template.html'%}
+{% block content %}
+{% if session['loged'] %}
+
+You're logged in already!
+
+{% else %}
+<center>
+<h1>login</h1>
+for test can login with
+<h3><b>username:<b>test     <b>pasword:</b>test</h3>
+<form action="/proyects/gas_login.html" method="POST">
+<input type="username" name="username" placeholder="Username">
+<input type="password" name="password" placeholder="Password">
+<input type="submit" value="Log in">
+</form>
+</center>
+{% endif %}
+{% endblock %}

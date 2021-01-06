@@ -1,0 +1,77 @@
+{% extends "wwwof/template.html" %}
+{% block content%}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='www_of/css/howproyects.css')}}">
+<h1> fishdb
+	<p> i dont have the knolage to do it now but i lern how i can do</p>
+</h1>
+
+<h1>relation bettewn  wwwofish and db </h1>	
+{% set description = ["id serial","scientific name is for ubicate the name in similar cases and difernaciate fish ","commmon name is for find more fast","the range of ph why is not a only value in this case","ph","the range of gh why is not a only value in this case and is import in contrys where is near the sea","gh","the range of temperature why is not a only value in this case" ,"temperature"  ,"aproximate  weight "  ,"large of fish in centimeters" ,"needed_liters"  ,"recommended_filtering  ","eats"   ,"can_eat"  ,"reproduction" ,"kill ","breathing" ,"mouth ","latitude  ","longitude  ", "country"  , "state"   ,"city      ","waterenv  ","temperament ","behavior ","swimming_zone"  ,"vel ", "light  ","gravel ","habitats", "habits"   ,"structural  ", "ornaments ","waterforce" , "ecosistem" ,"withpalnts ","forms_surroundings ","photo" ,"description ", "water " ,"quantiti","if have cost what is--> this is for companies to adopt wwwof and generate a utiliti","photoname",]%}
+
+<table border=" 3">		
+{% for j in  description %}	<tr><td>{{loop.index}} <---> {{ j }} </tr></td> {%endfor%} 
+</table>
+<h1> fish imgs</h1>
+<h3>to consider	</h3>
+<div style="font-size: 25px">
+	
+
+	<li>save</li>
+	steps i need to take file ,filename and like to put name and refernciate the filename with common name becasuse is more easy for use
+	<b>cleaning input and enabling the entry of some files</b>
+	<div class="codeIt" >
+		<code>
+			<p>photoname1 = str(photo).replace("FileStorage: '","" ) </p>
+			<p>photoname1 = str(photoname1).replace("' ('image/jpeg')>","")</p>
+			<p>photoname1 = str(photoname1).replace("' ('image/png')>","")</p>
+			<p>photoname1 = str(photoname1).replace("' ('image/jpg')>","")</p>
+		</code>
+	</div>
+	save 
+	<div class="codeIt">
+		<code>
+			
+		<p>imgdir = "./static/"+webpage+"/img/saved_db_img/"</p>
+		<p>photo.save(imgdir+photoname1)</p>
+		<p>file = photo</p>
+		<p>photo = photoname1</p>
+		</code>
+	</div>
+	if i put fish1 who to edit that
+	<li>oredenate</li>
+	<li>edit</li>
+	<li>change</li>
+	<li>find</li>
+	<li>serch
+		<p>is nesasary create a  serach engiene for search fishes?</p>
+		<p>i I consider it a luxury </p>
+		<li style="padding-left:5em">	db</li>
+			<li style="padding-left:10em">	updatefish</li>
+			<li style="padding-left:10em">	main of data_basecsv</li>
+			<li style="padding-left:10em">	serach engine</li>
+		<li style="padding-left:5em">	filemanager</li>
+
+	</li>
+</div>
+<h1>notes</h1>
+<p>can create wwwof databasecsv with that code and sqlite 3</p>
+<code>
+CREATE TABLE "fishes" (
+	"id"	INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+	"common_name"	text,
+	"scientific_name"	text,
+	"ph"	float,
+	"h"	float,
+	"liters"	float,
+	"cm"	float,
+	"tempC"	float,
+	"food"	text,
+	"reproduction"	text,
+	"temperament"	text,
+	"livingEnv"	text,
+	"swim"	text,
+	"location"	text,
+	"description"	text
+);
+</code>
+{% endblock %}

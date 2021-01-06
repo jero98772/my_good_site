@@ -1,0 +1,187 @@
+{% extends "wwwof/template.html" %}
+{% block content%}
+
+
+<h1>curapeces ingles</h1>
+
+<p>EN is a code for self-diagnose fish that is still in process works with python opencv I have it on github to keep a record the record are in the curapeces brogger    <a href="https://curapeces.blogspot.com">curapeces blog </a>is in varible increase with the final purpose  to find a comuininti no is only clasyfy image of sick fish is fish proyects open source</p>
+
+<h1>news</h1>
+
+<p><a href="https://github.com/jero98772/wwwofish">version with varios proyects of fish with GUI</a>   </p>
+
+<h1>models of AI</h1>
+
+<p>for download the models of AI
+if you need the AI models <a href="https://drive.google.com/drive/folders/1JU56IQ6u9Cn7rzvttIsmEEZLmIozNdAU?usp=sharing">pretraines</a> <br />
+and the datasets  is in the drive </p>
+
+<h1>you need</h1>
+
+<p>frist install  tensoflow,numpy, opencv and  keras
+tensorflow</p>
+
+<pre><code>python3 -m pip install tensorflow
+</code></pre>
+
+<p>keras</p>
+
+<pre><code>python3 -m pip install  keras
+</code></pre>
+
+<p>numpy</p>
+
+<pre><code>python3 -m pip install numpy 
+</code></pre>
+
+<p>opencv</p>
+
+<pre><code>python3 -m pip install opencv-python
+</code></pre>
+
+<p>or download all </p>
+
+<pre><code>python3 -m pip install opencv-python numpy  tensorflow keras
+</code></pre>
+
+<p>if you have a error 13 try run </p>
+
+<pre><code>sudo python3 -m pip install opencv-python numpy  tensorflow keras
+</code></pre>
+
+<h1>how use</h1>
+
+<p>when the code work and all download for code works run </p>
+
+<pre><code>python3 curapeces.py
+</code></pre>
+
+<p>the code is divide in parts</p>
+
+<p>curapeces is for train the model</p>
+
+<pre><code> curapeces = curapeces()# init the class
+ curapeces.image()#is how organized the nerural network
+ curapeces.save_nn() #for save the nerural network
+</code></pre>
+
+<p>predict es para  la imagen del pez y si esta enfermo y que enfermedad tiene</p>
+
+<pre><code>predict=predict()# init the class
+predict.display_image()# not is nesary , is for show image 
+print(predict.predict())# is for predict something
+</code></pre>
+
+<h5>very important if you are going to change the image from another code assign varible "pez" differently to value</h5>
+
+<pre><code> predict.pez = "you image of fish"
+</code></pre>
+
+<h3>notes</h3>
+
+<p>if you have problems with tensorflow try install tensorflow == 1.4</p>
+
+<pre><code>python3 -m pip install tensorflow == 1.4.0
+</code></pre>
+
+<p>i use a  <a href="https://github.com/jero98772/ordenador">ordenador</a> for organize the AI output models of this AI</p>
+
+<h4>contribute</h4>
+
+<p>donation</p>
+
+<pre><code>-  Bitcoin: tb1qgt4trnnsxdmfcpnydkmk8ht0y4esg4cdvzmhaz
+</code></pre>
+
+<h1>curapeces español</h1>
+
+<p>ES un código para auto diagnosticar peces que aun sigue en proceso  funciona con python opencv lo tengo en github para mantener un registro en el <a href="https://curapeces.blogspot.com">bloger de curapeces</a> esta en crecimiento varible con el fin de encontrar una comunidad  no es solo un clasificador de imaganes de peces enfermos </p>
+
+<h1>avisos</h1>
+
+<p><a href="https://github.com/jero98772/wwwofish">version con varios proyectos de  peces inluyedo GUI</a></p>
+
+<h1>modelos IA</h1>
+
+<p>para los modelos de inteligencia artifial <a href="https://drive.google.com/drive/folders/1JU56IQ6u9Cn7rzvttIsmEEZLmIozNdAU?usp=sharing">drive</a> <br />
+y las imagenes estan en drive</p>
+
+<h1>lo que nesistas</h1>
+
+<p>primero instala tensoflow,numpy y opencv
+tensorflow</p>
+
+<pre><code>python3 -m pip install tensorflow
+</code></pre>
+
+<p>keras</p>
+
+<pre><code>python3 -m pip install  keras
+</code></pre>
+
+<p>numpy</p>
+
+<pre><code>python3 -m pip install numpy 
+</code></pre>
+
+<p>opencv</p>
+
+<pre><code>python3 -m pip install opencv-python
+</code></pre>
+
+<p>o para descargar todo de una </p>
+
+<pre><code>python3 -m pip install opencv-python numpy  tensorflow keras
+</code></pre>
+
+<p>si te sale error 13 puedes intentar ejecutarlo asi </p>
+
+<pre><code>sudo python3 -m pip install opencv-python numpy  tensorflow keras
+</code></pre>
+
+<h1>como usarlo</h1>
+
+<p>con todo instalado y funcionado puedes correr en python 3 el comando </p>
+
+<pre><code>python3 curapeces.py
+</code></pre>
+
+<p>el codigo esta divido en curapeces y en predict</p>
+
+<p>curapeces es para entrenar al modelo</p>
+
+<pre><code>curapeces = curapeces()# inicialisar la clase
+curapeces.image()#como esta organisar la red neuronal
+curapeces.save_nn() #para guardarla
+</code></pre>
+
+<p>predict es para  la imagen del pez y si esta enfermo y que enfermedad tiene</p>
+
+<pre><code>predict=predict()# inicialisar la clase
+predict.display_image()#no es nesaria es para mostrar la imagen
+print(predict.predict())# para predecir lo que va apredecir
+</code></pre>
+
+<h5>muy importante si se va cambiar la imagen  desde otro codigo asignar "pez" de otra manera</h5>
+
+<pre><code> predict.pez = "tu imagen de pez"
+</code></pre>
+
+<h1>notas</h1>
+
+<p>si tienes problemas con tensorflow al ejeculatlo prueba instalar  tensorflow == 1.4</p>
+
+<pre><code>python3 -m pip install tensorflow == 1.4.0
+</code></pre>
+
+<p>yo uso una version de <a href="https://github.com/jero98772/ordenador">ordenador</a> para organisar los modelos que  de IA porducios</p>
+
+<h4>contribuye</h4>
+
+<p>donando </p>
+
+<pre><code>-  Bitcoin: tb1qgt4trnnsxdmfcpnydkmk8ht0y4esg4cdvzmhaz
+</code></pre>
+
+
+{% endblock %}

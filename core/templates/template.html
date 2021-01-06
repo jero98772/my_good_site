@@ -1,0 +1,89 @@
+<!--
+my_good_site - 2020 - por jero98772
+my_good_site - 2020 - by jero98772
+-->	
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>
+	my blog jero98772
+</title>
+</head>
+<body>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/templateStyle.css')}}">
+	<center>
+		<div id="header">
+			
+		<ul class="bar">
+			<li><a href="/">main menu</a></li>
+
+				<li><a href=""><h2> links to parts of this web  </h2></a>
+					<ul>
+						<li><a href="/wwwof/">wwwof (fish proyects)</a> </li>
+						<li><a href="/proyects/">proyects</a></li>
+					</ul>
+				</li>
+
+				<li><a href=""> Blog menu  </a>
+					<ul>
+						<li><a href="/blog.html">blog</a> </li>
+						<li><a href="/ChatSO.html">ChatSO</a> </li>
+						<li><a href="/mySiteMap.html">map of this site</a> </li>
+					</ul>
+				</li>
+				
+
+				<li><a href=""> about proyctes and page</a>
+					<ul>
+						<li onclick="alert('fix ')"><a> problems? </a> </li>
+
+						<li onclick="alert('make how you like')"><a>you dont like</a></li>
+
+						<li onclick="alert('make it fater')"><a>very slow? </a></li>
+						<li onclick="alert('add it')"><a> something is missing</a></li>
+						<li onclick="alert('aid')"><a>i like to help</a></li>
+						<li onclick="alert('make some for todo list or donate')"><a>how i can help</a></li>
+						<li onclick=" alert('soon In other languages ,i made possible by speak spanish can you imagine in other language ,can you    translate it or use https://translate.google.com/')"><a>I do not speak Spanish </a></li>
+						<li onclick="alert('ponlo a funcionar')"> <a>no funciona </a></li>
+						<li onclick="alert('HAZLO/do it ')"><a>  no digas que vas a hacer .../ don't say what are you going to do"</a></li>
+						<li onclick="alert('se soluciona')"><a>dañe algo</a></li>
+					</ul>
+				</li>
+
+
+			</ul>
+
+		</div>
+	</center>
+	<br>
+	<br>
+	<br>
+	<br>
+{% block content %}
+
+{% endblock %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div id="end" style="background-color: green;">
+<marquee>
+	<a href="https://github.com/jero98772"><img src="https://img.pngio.com/github-logo-icon-of-glyph-style-available-in-svg-png-eps-ai-github-icon-png-256_256.png" height="100" width="100"></a>
+	<a href="mailto:jero98772@protonmail.com">
+	<img src="{{ url_for('static', filename='img/mail.png')}}" height="100" width="100">
+	</a>
+	<a href="donacionbtc.html">
+	<img src="https://bitcoin.org/img/icons/opengraph.png?1584741964" height="100" width="100">
+	</a>
+	<img src="http://wiki.unloquer.org/_media/wiki/logo.png" height="100" width="100">
+	<img src="https://blog.powerdata.es/hs-fs/hub/239039/file-1056751617-png/images/opensource-logo-resized-600.png" height="100" width="100" >
+	<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Open-source-hardware-logo.svg/200px-Open-source-hardware-logo.svg.png" height="100" width="100" >
+<!-- i dont wait this work how i like -->
+</marquee>
+</div>
+</body>
+</html>

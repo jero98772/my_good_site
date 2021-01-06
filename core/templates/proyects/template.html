@@ -1,0 +1,103 @@
+{%set proyects = "/proyects"%}
+{%set proyects = "/proyects/"%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<title>proyects</title>
+</head>
+<body>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/proyects/codeStyle.css')}}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/proyects/templateStyle.css')}}">
+	<center>
+		<div id="header">
+			
+		<ul class="bar">
+			<li><a href="/">main menu</a></li>
+
+
+				<li><a href=""> proyects in this web   </a>
+					<ul>
+						<li><a href="{{proyects}}aircolombia.html">aircolombia</a> </li>
+						<li><a href="{{proyects}}htmlpower.html">htmlpower</a> </li>
+						<li><a href="{{proyects}}criptools.html">criptools</a> </li>
+						<li><a href="{{proyects}}gas.html">gas</a> </li>
+						<li><a href="{{proyects}}img2asciiart.html">img2asciiart</a> </li>
+						<li><a href="{{proyects}}hackido.html">hackido (new version in proces)</a> </li>
+						<li><a href="{{proyects}}pm25predict.html">pm25predict</a> </li>
+						<li><a href="{{proyects}}pandemaths.html">PandeMaths</a> </li>
+
+					</ul>
+				</li>
+				<li><a href="https://github.com/jero98772"> source  </a>
+					<ul>
+						<li><a href="https://github.com/jero98772/gpgforall">gpgforall</a> </li>
+						<li><a href="https://github.com/jero98772/hackido">hackido (new version in proces)</a> </li>
+						<li><a href="https://github.com/jero98772/pm25_predict/tree/withoutMLlibs">pm25predict</a> </li>
+						<li><a href="https://github.com/epsylon/PandeMaths">PandeMaths</a> </li>
+						<li><a href="https://github.com/jero98772/PandeMaths">Web PandeMaths</a> </li>
+
+					</ul>
+				</li>
+				
+
+				<li><a href="">about proyctes</a>
+					<ul>
+						<li onclick="alert('arreglalos')"><a>tienes promblemas? </a> </li>
+
+						<li onclick="alert('conviertelo como te gusta')"><a>ves algo que no te gusta?</a></li>
+
+						<li onclick="alert('conviertelo rapido ya sea optimisandolo donando para  equipo y corriendo el codigo etc')"><a>muy lento? </a></li>
+						<li onclick="alert('agregaselo')"><a> le falta algo?</a></li>
+						<li onclick="alert('ayuda')"><a>quiero ayudar</a></li>
+						<li onclick="alert('como quieras y puedas hay esta la planeacion')"><a>como puedo ayudar?</a></li>
+						<li onclick=" alert('	soon In other languages ,i made possible by speak spanish can you imagine in other language ,can you    translate it or use https://translate.google.com/')"><a>I do not speak Spanish </a></li>
+						<li onclick="alert('ponlo a funcionar')"> <a>no funciona </a></li>
+						<li onclick="alert('HAZLO/do it ')"><a>  no digas que vas a hacer .../ don't say what are you going to do"</a></li>
+						<li onclick="alert('se soluciona')"><a>dañe algo</a></li>
+					</ul>
+				</li>
+
+
+			</ul>
+
+		</div>
+	</center>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+{% block content %}
+
+{% endblock %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div id="end" style="background-color: orange;">
+<marquee>
+	<a href="https://github.com/jero98772"><img src="https://img.pngio.com/github-logo-icon-of-glyph-style-available-in-svg-png-eps-ai-github-icon-png-256_256.png" height="100" width="100"></a>
+	<a href="mailto:comingsoon@">
+	<img src="{{ url_for('static', filename='img/mail.png')}}" height="100" width="100">
+	</a>
+	<a href="/donacionbtc.html">
+	<img src="https://bitcoin.org/img/icons/opengraph.png?1584741964" height="100" width="100">
+	</span>
+	</a>
+	<img src="http://wiki.unloquer.org/_media/wiki/logo.png" height="100" width="100">
+
+	<img src="https://blog.powerdata.es/hs-fs/hub/239039/file-1056751617-png/images/opensource-logo-resized-600.png"height="100" width="100" >
+	<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Open-source-hardware-logo.svg/200px-Open-source-hardware-logo.svg.png" height="100" width="100" >
+<!-- i dont wait this work how i like -->
+</marquee>
+</div>
+</body>
+</html>

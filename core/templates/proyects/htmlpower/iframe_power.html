@@ -1,0 +1,11 @@
+{% extends  'proyects/template.html'%}
+{% block content %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/proyects/htmlpower/iframePower.js')}}"></script>
+<h1>when you push de bottom you will recreate a project</h1>
+<br>
+<p id="proyect"></p>
+<br>
+<form>
+<input type="button" onclick ="showProyect()" value="calcular">
+</form>
+{% endblock  %}

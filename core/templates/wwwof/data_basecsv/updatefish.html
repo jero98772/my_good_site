@@ -1,0 +1,140 @@
+{% extends  '/wwwof/template.html'%}
+{% block content %}
+<form action="update_fish/{{fish.0}}" method="POST" enctype="multipart/form-data">	
+<table style=" width:100%;" border="1">
+	<tr>
+		<td>common name</td>
+		<td><input type="text" name="common" placeholder="common name" value="{{ fish.1 }}" ></td>
+		<td>scientific name</td>
+		<td><input type="text" name="scientific" placeholder="scientific name"  value="{{ fish.2 }}"></td>
+	</tr>
+	<tr>
+		<td>ph</td> 
+		<td><input type="text" name="ph" placeholder="ph" value="{{ fish.3 }}"></td>
+		<td>h (water hardness)</td>
+		<td><input type="text" name="h" placeholder="h" value="{{ fish.4 }}"></td>
+	</tr>
+	<tr>
+
+		<td>liters</td>
+		<td><input type="text" name="liters" placeholder="liters" value="{{ fish.5 }}"></td>
+		<td>length (cm)</td>
+		<td><input type="text" name="cm" placeholder="cm" value="{{ fish.6 }}"></td>
+
+	</tr>
+	<tr>
+		<td>temperature in degrees Celsius</td>
+		<td><input type="text" name="tempC" placeholder="tempC" value="{{ fish.7 }}"></td>
+		<td>location</td>
+		<td><input type="text" name="location" placeholder="location" value="{{ fish.14 }}"></td>
+	</tr>
+	<tr>
+		<td>food</td>
+		<td><select name="food" value="{{ fish.9 }}">
+				<option>packaged</option>
+				<option>worms,daphnia </option>
+				<option>living fish</option>
+				<option>vegetarian</option>
+		</select></td>
+
+		<td>reproduction</td>
+		<td><select name="reproduction" value="{{ fish.10 }}">
+				<option>oviparous</option>
+				<option>viviparous</option>
+				<option>mouthwashers</option>
+		</select></td>
+	</tr>
+	<tr>
+		<td>lighting</td>
+		<td><select name="lighting" value="{{ fish.11 }}">
+				<option>intense</option>
+				<option>midle</option>
+				<option>few</option>
+		</select></td>
+		<td>temperament</td>
+		<td><select name="temperament" value="{{ fish.12 }}">
+				<option>passive</option>
+				<option>aggressive</option>
+		</select></td>
+	</tr>
+	<tr>
+		<td>living with</td>
+		<td><select name="livingEnv" value="{{ fish.13 }}">
+				<option>plants</option>
+				<option>rocks</option>
+				<option>gravel</option>
+				<option>rocks, plants, etc.</option>
+		</select></td>
+		<td>where swim</td>
+		<td><select name="swim" value="{{ fish.14 }}">
+				<option>depth</option>
+				<option>medium</option>
+				<option>surface</option>
+				<option>without preference</option>
+		</select></td>
+	</tr>
+	<tr> 
+		<td>description</td>
+		<td>
+			<input type="text" name="description" placeholder="description" value="{{ fish.15 }}">
+		</td>
+		<td>fish photo</td>
+			{% set imgpath = "img/wwwof/data_basecsv/"+ fish.0|string +"fish" %}
+			<img src="{{ url_for('static',filename = imgpath )}}" height="250" width="500" >
+		<td><input type="file" name="photo"  id="inputimge"  ></td>
+	</tr>
+	<tr> 		
+		<td colspan="2">summit changes</td>
+		<td colspan="2">
+		<button type="summit ">summit </button>
+		</td>	
+	</tr>
+</table>
+<h1>Note you acuarium is a simulation of wild</h1>
+
+<table  border="1">
+
+	{% for fish in fishes %}
+
+			<tr bgcolor="aqua">
+				
+				<td>id {{ fish.0 }}</td>
+				<td colspan="2" ><b>common Name</b><h1>{{fish.1}}</h1></td>
+				<td><b>scientific Name</b> {{ fish.2 }}</td>
+				<td><b>ph</b>{{fish.3}}</td>
+				<td rowspan="6" ><a href="data_basecsv/delete/{{ fish.0 }}">eliminar</a></td>
+				<td rowspan="6"><a href="data_basecsv/{{ fish.0 }}">editar</a></td>
+
+			</tr>
+			<tr>
+				<td><b>h (water hardness)</b> {{ fish.4}}</td>
+				<td colspan="3" rowspan="3">
+					{% set imgpath = "img/wwwof/data_basecsv/"+ fish.0|string +"fish" %}			
+					<img src="{{ url_for('static',filename = imgpath )}}" height style="width :100%;height: 100%" >
+				</td>
+				<td><b>liters </b>{{ fish.5}}</td>
+			</tr>
+			<tr>
+				<td><b>length </b>{{ fish.6}} (cm) </td>
+				<td><b>temperature in degrees Celsius </b>{{ fish.7}} C°</td>
+			</tr>
+				<td><b>location</b>{{ fish.14}} </td>
+				<td><b>food </b> {{ fish.8}}</td>
+			</tr>
+			<tr>
+			<tr>
+				<td><b>reproduction </b> {{ fish.9}} </td>
+				<td><b>lighting </b> {{ fish.10}}</td>
+				<td><b>temperament</b> {{ fish.11}}  </td>
+				<td><b>living with</b> {{ fish.12}}</td>
+				<td><b>where swim</b> {{ fish.13}}</td>
+				<td><b>description </b>{{fish.15}} </td>
+			</tr>
+	{% endfor  %}
+	</tbody>
+</table>
+
+</form>
+
+{% endblock %}
+

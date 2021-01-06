@@ -1,0 +1,60 @@
+{% extends  'proyects/template.html'%}
+{% block content %}
+<form method="post"  enctype="multipart/form-data" >
+<div class="codeIt">
+
+<br>
+<h1> img2ascii like art</h1>
+<table>
+	<tr>
+		<td>char to fill figure</td>
+		<td>char to fill empty space</td>
+		<td>Value for replace </td>
+		<td>intensity </td>
+		<td>size of matrix of </td>
+	</tr>
+	<tr>
+		<td>
+			<input type="text" name="fillItem"  value="{{ defaultvalues.0 }}">
+		</td>
+		<td>
+			<input type="text" name="noFillItem"  value="{{ defaultvalues.1 }}"> 
+		</td>
+		<td>
+			<input type="text" name="replaceValue" value="{{ defaultvalues.2 }}">
+		</td>
+		<td>
+			<input type="text" name="intensity" value="{{ defaultvalues.3 }}">
+		</td>
+		<td>
+			<input type="text" name="size" value="{{ size }}">
+		</td>
+	</tr>
+</table>
+<h1>image file to convert to ascii</h1> 
+<input type="file" name="imgfile"  id="inputimge" autocomplete="off"  style="width: 300%">
+<br>
+<div class="codeIt">
+	<h1>notes</h1>
+<p> max size = 100</p> 
+<br>
+what is intensity and Value for replace ? that are
+<p>[Value of pixel//intensity == Value]</p>
+<br>
+<p>url not allowed now </p>
+<br>
+</div>
+
+
+<div class="codeIt">
+{% for i in  out.0%}
+<p> {{ i }} </p>
+{% endfor %}
+{% for i in  out.1%}
+<p> {{ i }} </p>
+{% endfor %}
+</div>
+<input type="submit" name="">
+</div>
+</form>
+ {% endblock  %}
