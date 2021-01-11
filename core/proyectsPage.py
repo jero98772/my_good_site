@@ -5,12 +5,11 @@ my_good_site - 2020 - por jero98772
 my_good_site - 2020 - by jero98772
 """
 from flask import Flask, render_template, request, flash, redirect ,session
-from core.tools.webUtils import generatePassword , deletefiles ,minsTotales,hoyminsArr,writetxt,readtxt,readtxtstr,hoyminsStr,isEmpty,yesno,date2int,deleteWithExt,img2asciiart,limitsize,getExt
+from core.tools.webUtils import generatePassword , deletefiles ,minsTotales,hoyminsArr,writetxt,readtxt,readtxtstr,hoyminsStr,isEmpty,yesno,date2int,deleteWithExt,img2asciiart,limitsize,getExt ,setLimit
 from core.tools.flaskUtils import multrequest 
-from core.tools.cryptotools import enPassowrdHash,enPassowrdStrHex ,cifrarcesar ,descifrarcesar ,chars ,rndkey ,encryptAES ,decryptAES,encryptRsa,decryptRsa,getrndPrime ,isPrime,genprimes ,genKey
+from core.tools.cryptotools import enPassowrdHash,enPassowrdStrHex ,cifrarcesar ,descifrarcesar ,chars ,rndkey ,encryptAES ,decryptAES,encryptRsa,decryptRsa,getrndPrime ,isPrime,genprimes ,genKey,encpalabranum,decpalabranum
 from core.tools.libWithoutSuport import shortcut
 from core.tools.dbInteracion import dbInteracion
-from random import randint 
 app = Flask(__name__)
 app.secret_key = str(enPassowrdHash(generatePassword()))
 class proyects():
@@ -90,29 +89,18 @@ class proyects():
 	def pandemaths():
 		from core.proyects.PandeMaths.pandemaths import new_simulation ,load_template
 		from core.proyects.PandeMaths import pandemaths 
+		pandemathsVars = ['total_population','infected_starting','days','daily_rate_interaction','average_rate_duration','probability_of_contagion','recovery_rate','template_set']
 		pathAndName ="core/static/reports/"
 		pandemaths.reports_path = pathAndName
 		deletefiles(pathAndName+"PandeMaths-report/PandeMaths-report")
 		if request.method == 'POST':
-			# i need use multrequest
-			total_population = int(request.form['total_population'])
-			infected_starting = int(request.form['infected_starting'])
-			days = int(request.form['days'])
-			daily_rate_interaction = float(request.form['daily_rate_interaction'])
-			average_rate_duration = int(request.form['average_rate_duration'])
-			probability_of_contagion = int(request.form['probability_of_contagion'])
-			recovery_rate = int(request.form['recovery_rate'])
-			starting_population = total_population
+			pandemathsData = list(map(int,multrequest(pandemathsVars)))
 			template = request.form['template']
-			template_set = request.form['template_set']
-			if template == "load template":
-				average_rate_duration = None
-				probability_of_contagion = None
-				recovery_rate = None
+			if template== "load template":
 				simulation_name = "OPEN"
-				new_simulation(total_population, infected_starting, days, daily_rate_interaction, average_rate_duration, probability_of_contagion, recovery_rate, simulation_name, starting_population)
+				new_simulation(pandemathsData[0], pandemathsData[1], pandemathsData[2], pandemathsData[3], None, None,None, simulation_name, pandemathsData[0])
 			elif template == "new simulation":
-				load_template(total_population, infected_starting, days, daily_rate_interaction, starting_population,template_set)
+				load_template(pandemathsData[0], pandemathsData[1], pandemathsData[2], pandemathsData[3], pandemathsData[0],pandemathsData[7])
 		return render_template("proyects/pandemaths/pandemaths.html")
 	@app.route(webpage+"pandemathsout.html",methods=['GET','POST'])
 	def pandemathsout():
@@ -121,6 +109,16 @@ class proyects():
 		with open(pathAndName+"/PandeMaths-report.txt", "r") as f:
 			data = f.readlines()
 		return render_template("proyects/pandemaths/out.html",text=data )
+	@app.route(webpage+"DsoonMath.html",methods=['GET','POST'])
+	def dsoonmath():
+		out = []
+		from core.proyects.DsoonMath.DsoonMath import ecuationDS 
+		rnd_equation = ecuationDS()
+		vals = ["operators","datatypes","quantity"]
+		if request.method == 'POST':
+			data = list(map(int,multrequest(vals)))
+			out = ecuationDS(data[0],data[1],data[2])
+		return render_template("proyects/DsoonMath/DsoonMath.html",surpriseEc = rnd_equation, out= out)
 	@app.route(webpage+"criptools.html")
 	def criptools():
 		return render_template("proyects/criptools/criptools.html") 
@@ -213,10 +211,7 @@ class proyects():
 		key = rndkey()
 		charshtml = chars
 		if request.method == 'POST':
-			try:
-				option = str(request.form["optioncesar"])
-			except:
-				option = "cifrate"
+			option = str(request.form["optioncesar"])
 			key = int(request.form["key"])
 			cesartext = str(request.form["cesartext"])
 			charshtml = str(request.form["chars"])
@@ -227,6 +222,18 @@ class proyects():
 			else:
 				mensaje = ""
 		return render_template("proyects/criptools/cesar.html",charshtml = charshtml,resulthtml = mensaje,htmlkey=key) 
+	@app.route(webpage+"criptools/criptophone.html",methods=['GET','POST'])
+	def criptophone():
+		newmsg = ""
+		options = ["encode","decode"]
+		if request.method == 'POST':
+			option = str(request.form["option"])
+			message = str(request.form["message"])
+			if option == options[0]:
+				newmsg = encpalabranum(message)
+			else:
+				newmsg = decpalabranum(message)
+		return render_template("/proyects/criptools/criptophone.html",out = newmsg)
 	@app.route(webpage+"img2asciiart.html",methods=['GET','POST'])
 	def img2ascii():
 		outfig = ""
@@ -238,23 +245,20 @@ class proyects():
 		intensity = 255
 		replaceValue = 0
 		defaultvalues = [defaurltFill,defaurltNoFill,replaceValue,intensity]
-		#dataStr = ["fillItem","noFillItem"]
-		#dataInt = ["debug1","debug2","size"]
+		fillvalues = [defaurltFill,defaurltNoFill]
+		values = ["fillItem","noFillItem","size","intensity","replaceValue"]
 		if request.method == 'POST':
 			imgfile = request.files["imgfile"]
+			data = multrequest(values)
 			ext = getExt(str(imgfile))
-			fillItem = str(request.form["fillItem"])
-			noFillItem = str(request.form["noFillItem"])
-			size = int(limitsize(int(request.form["size"]),100))
-			intensity = int(request.form["intensity"])
-			replaceValue = int(request.form["replaceValue"])
-			replacesItems = [replaceValue,intensity]
+			size = int(limitsize(int(data[2]),100))
+			defaultvalues = [data[0],data[1],data[4],data[3]]
+			fillvalues = [data[0],data[1]]
 			fileName = imgdir+name+ext
 			imgfile.save(fileName)
-			print(fileName)
-			outfig = img2asciiart(fileName,size,intensity , replaceValue,[defaurltFill,defaurltNoFill])
+			outfig = img2asciiart(fileName,size,data[3] , data[4],fillvalues)
 			deleteWithExt(imgdir+name,ext)
-		return render_template("proyects/img2asciiart/img2asciiart.html",out = outfig,size = size,defaultvalues = defaultvalues )
+		return render_template("proyects/img2asciiart/img2asciiart.html",out = outfig,size = size ,defaultvalues = defaultvalues )
 	"""#proyects without my suport#"""
 	@app.route(webpage+"gas.html", methods = ['GET','POST'])
 	def gas():

@@ -107,6 +107,7 @@ venv.bak/
 data/modelsAI/*
 data/tmp/*
 core/static/img/blog/*
+core/static/img/wwwof/curapeces/*
 core/static/img/proyects/*
 core/static/img/wwwof/data_basecsv/*
 core/static/reports/PandeMaths-report/*

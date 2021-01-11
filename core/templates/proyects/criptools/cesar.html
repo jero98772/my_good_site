@@ -32,15 +32,17 @@
 				<input type="text" name="cesartext" style="width: 70%"  value=""> <br>
 				key [defalt is random]
 				<input type="text" name="key" value="{{htmlkey}}"style="width: 70%">  <br>
-				result be<br>
-				<h1>{{ resulthtml }}</h1>
-				<input type="radio" id="cifrate" name="optioncesar" value="cifrate">
-				<label for="cifrate">cifrate</label>
-				<input type="radio" id="desifrate" name="optioncesar" value="desifrate">
-				<label for="desifrate">desifrate</label>
+				<label>you need cifrate/desifrate</label>
+				<select name="optioncesar">
+					<option>cifrate</option>
+					<option>desifrate</option>
+				</select>
 				<br>
 				if you need change chars
 				<input type="text" name="chars"  style="width: 70%" value="{{charshtml}}">  
+				<br>
+				result be
+				<h1>{{ resulthtml }}</h1>
 
  			</div>
 	</div>

@@ -12,6 +12,8 @@ from random import randint
 from core.tools.webUtils import mayor,menor
 from math import gcd
 chars = " !#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"
+letras = "abcdefghijklmnopqrstuvwxyz"
+nums = "234567890"
 def isPrime(inputnum):
 	if inputnum < 2:
 		return False
@@ -126,3 +128,51 @@ def decryptRsa(cifrate,d,n):
 		dechar = int((int(value)**d)%n)
 		msg += chars[dechar]
 	return msg
+def getnum():
+	tecladoConNumeros = [] 
+	contador = 2
+	contadorletras = 0 
+	for i in range(len(letras)):
+		if contadorletras == 3 and contador != 9 and  contador != 7 :
+			contadorletras = 0
+			contador += 1 
+		elif contadorletras == 4 and (contador == 9 or  contador == 7): 
+			contadorletras = 0
+			contador += 1 
+		tecladoConNumeros.append(str(contador)*(contadorletras+2))			
+		contadorletras +=1
+	return tecladoConNumeros
+def encpalabranum(palabra):
+	nums = getnum()
+	palabraenc = ""
+	for i in palabra:
+		try:
+			palabraenc += str(int(i))
+			palabraenc+=","
+		except:
+			pass
+		for ii in range(len(nums)):
+			if i == letras[ii]:
+				palabraenc += nums[ii]
+				palabraenc+=","
+		if i == " ":
+			palabraenc += "00"
+			palabraenc+=","
+	return palabraenc
+def decpalabranum(palbraenc):
+	nums = getnum()
+	palabra = ""
+	caracter = ""
+	for i in palbraenc:
+		if i ==  ",":
+			if caracter == "00":
+				palabra += " "
+			else:
+				try:
+					palabra += letras[nums.index(caracter)]
+				except:
+					palabra += str(caracter)
+			caracter = ""
+		else:
+			caracter+=i
+	return palabra

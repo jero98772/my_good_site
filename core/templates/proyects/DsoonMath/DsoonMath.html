@@ -1,0 +1,35 @@
+{% extends  'proyects/template.html'%}
+{% block content %}
+<center>
+<h1>DsoonMath</h1>
+<div class="codeIt">
+	<h2>you can find the answer</h2>
+	<p>{{ surpriseEc.0 }}</p>
+	<br>
+	<hr>
+	<br>
+	<h1>generate exercises</h1>
+	<form method="post">		
+	<table>
+		<tr>
+			<td>level operators ?[1-9]</td>
+			<td>level datatypes ?[1-4]</td>
+			<td>how many exercises?</td>
+		</tr>
+		<tr>
+			<td><input type="text" name="operators"></td>
+			<td><input type="text" name="datatypes"></td>
+			<td><input type="text" name="quantity"></td>
+		</tr>	
+	</table>
+	<input type="submit">
+	</form>
+	<div class="codeIt">
+		{% for i in out %}
+			<p> {{ i }} </p>
+			<br>
+		{% endfor %}	
+	</div>
+</div>
+</center>
+{% endblock %}

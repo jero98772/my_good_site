@@ -11,14 +11,14 @@ is a blog ? is a portafolio ? is interactive web ? what it is?
 ## why is important ?
 
 
-is web where many projects meet here ,that proyects were already made their backend 
-here are some that already have a web interface
+is web where many projects collected here ,that proyects were already made their backend 
+here are some that already have a web interface and test it
 
 enjoy!!
 
 ## why opensource
 because have litle tool, modules and others ,that can help for various things like module for integrate other proyects in flask ...
 
-## how i can run i my machiene?
+## how i can run i my machine?
 install some dependences 
 

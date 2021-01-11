@@ -19,7 +19,7 @@ class webpage():
 	urlWwwof = "/wwwof/"
 	urlProyects = "/proyects/"
 	wwwofDireccions = ["calcupH","drawFISHTANK","divePC","curapeces","fishproyectsEN","fishproyectsES","notasCurapeces","howproyects/howcalcupH_js","howproyects/howcurapeces","howproyects/howDrawfishtank","howproyects/howfishdb","data_basecsv"]
-	proyectsDireccions = ["aircolombia","htmlpower","htmlpower/little_recursion","htmlpower/iframe_power","pm25predict","pm25predict/pm25predictUnloquer","pm25predict/pm25predictCanairio","pandemaths","pandemathsout","criptools","criptools/criptoretos","criptools/cesar","criptools/hashs","criptools/criptoolsencblog","criptools/rsa","img2asciiart","gas","gas_login"]
+	proyectsDireccions = ["aircolombia","htmlpower","htmlpower/little_recursion","htmlpower/iframe_power","pm25predict","pm25predict/pm25predictUnloquer","pm25predict/pm25predictCanairio","pandemaths","pandemathsout","DsoonMath","criptools","criptools/criptoretos","criptools/cesar","criptools/hashs","criptools/criptoolsencblog","criptools/rsa","criptools/criptophone","img2asciiart","gas","gas_login"]
 	#forgottenproyects = ["gas/actualisar<string:id>","gas/editar<string:id>","gas/eliminar/<string:id>"]
 	joinWebpage(urlWwwof,wwwofDireccions,appwwwof,app)
 	joinWebpage(urlProyects,proyectsDireccions,appproyects,app)

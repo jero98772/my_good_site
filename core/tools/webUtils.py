@@ -6,10 +6,30 @@ my_good_site - 2020 - by jero98772
 """
 import os
 import datetime
-#import subprocess 
+#import subprocess
 from random import randint
 esMesesCon31dias = [True,"febrero28",True,False,True,False,True,True,False,True,False,True]
 simbols = " !#$%&'()*+,-./0123456789:;<=>?@[\\]^_`{|}~"
+#debug functions
+def p(*args,space):
+	for i in args:
+		print(space*"\n",i,"\n"*space)
+#short functions
+def rnd(x):
+	return randint(0,x)
+def imgNumName(dirname):
+	return str(len(os.listdir(dirname)))
+def img2NumName(dirname):
+	try:
+		lendir = len(os.listdir(dirname))
+		if lendir % 2 == 0:
+			return lendir/2
+		else :
+			return (lendir-1)/2
+	except:
+		lendir = 0
+	return lendir
+#useful functions
 def mayor(num1,num2):
 	if num1>num2:
 		return num1
@@ -236,6 +256,11 @@ def limitsize(size,limit):
 		return size
 	else:
 		return int(size/len(str(size)))
+def setLimit(value,limit):
+	if value < limit:
+		return value
+	else:
+		return limit
 def getExt(filename):
 	isPoint = False
 	for i in str(filename):
