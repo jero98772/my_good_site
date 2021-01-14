@@ -1,0 +1,53 @@
+terminar 
+
+-mapa
+ 
+- DiaNA , de espylon 
+-- grafica
+-- version web
+- dsoonmath
+- tt con ht , tt juego
+-- prototipo
+-- graficas
+-- hacer el juego unirlo al personaje 
+
+
+optimisar
+cuando termine de optimisar 
+... reoptimisar
+... organisar gas 
+... mejorar la criptografia y cifrar la pagina
+hackido
+cuando finalise vacasiones ... el nuevo hackido (cuando se mejore el uso de bases de datos que se haga escalable)
+criptoaudio
+cuando aprenda ... descomponer audio y meter le cosas (texto o vos ) adentro y que se escuhe igual,encriptarlo o gardar cosas en audio?
+canairio pm25predict
+cuando no sean tablas ... canairio pm25predict
+celular
+cuando no tenga nada que hacer ... pensar si seria bueno una version para celular 
+url
+cuando haga un prototipo de imagenes por url ... imagenes por url lo implento en curapeces ,databasecsv, ascii art
+entrevistas ... cuando valga la pena
+- programa para entrevistas  tipo chat con relacion al numero 33 , 3 paginas de entrevistas de 11 personas, 3 cosas de  la persona , color ,sonido , animal,  cultura con la que se identifican ,contaco opcional o alguna frase 
+- solucionar ia curapeces ... sin depender de una api
+
+
+... mejorar manejo de python 
+... pasar valores a los arrays por referencia?
+... libreria logica en c para python? 
+
+-mapa
+-mi simbolo <ok> 
+- DiaNA , de espylon 
+-- pequeña optimisacion <ok>
+-- grafica
+-- version web
+- ascii to img <ok>
+- criptools y sus rsa y blog encriptado ilistrado ,cripto phone <ok>
+- dsoonmath
+- solucionar ia curapeces
+- tt con ht , tt juego
+-- prototipo
+-- grafcas
+-- hacer el juego unirlo al personaje 
+

@@ -6,7 +6,7 @@ def shortcut():
 	return db
 def clearimg(file):
 	try:
-		rmbg = RemoveBg("you api key here", "error.log")
+		rmbg = RemoveBg("YjP8oUTdLt524CuQMkBT3qnx", "error.log")
 		img = rmbg.remove_background_from_img_file(file)
 	except:
 		img = file

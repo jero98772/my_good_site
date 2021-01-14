@@ -33,10 +33,17 @@ class webpage():
 		return appproyects
 	@app.route("/")
 	def index():
+		"""way join all the codes in one"""
 		return render_template("index.html")
 	@app.route("/donacionbtc.html")
 	def donacionBtc():
 		return render_template("donacionbtc.html")
+	@app.route("/BetterMap.html")
+	def BetterMap():
+		#webdireccions as variables	
+		urlWwwof = "/wwwof/"
+		urlProyects = "/proyects/"
+		return render_template("BetterMap.html",wl =urlWwwof, pl =urlProyects)
 	@app.route("/mySiteMap.html")
 	def mySiteMap():
 		#webdireccions as variables	
@@ -45,35 +52,45 @@ class webpage():
 		return render_template("mySiteMap.html",waterMap =urlWwwof, spaceMap =urlProyects)
 	@app.route("/blog.html")
 	def blog():
+		"""join ways of expressing myself in front of different things"""
 		return render_template("/blog/blogmenu.html") 
 	@app.route("/blog/blog1.html")
 	def blog1():
+		"""thoughts about something"""
 		return render_template("blog/blog1.html")
 	@app.route("/blog/blog2.html")
 	def blog2():
+		"""things a little more important for me"""
 		return render_template("blog/blog2.html")  
 	@app.route("/blog/blog3.html")
 	def blog3():
+		"""I recommend you about diferents topics"""
 		return render_template("blog/blog3.html")  
 	@app.route("/blog/blog4.html")
 	def blog4():
+		"""figures or gallery of ascii art"""
 		return render_template("blog/blog4.html")
 	@app.route("/blog/blog5.html")
 	def blog5():
+		"""good humans that I admire"""
 		return render_template("blog/blog5.html")  
 	@app.route("/blog/blog6.html")
 	def blog6():
+		"""projects that call my attention that I want to share"""
 		return render_template("blog/blog6.html")
 	@app.route("/blog/blog7.html")
 	def blog7():
+		""" travel to others proyects ... with <iframe>"""
 		return render_template("blog/blog7.html")
 	@app.route("/blog/manifest.html")
 	def manifest():
+		"""me and some cultures of my interest ,I build my Manifest and I read those ofI read those of others others"""
 		return render_template("blog/manifest.html")
 	@app.route('/ChatSO.html')
 	def ChatSO():
+		""" access to irc channel #jero98772 with irc kiwi """
 		return render_template('ChatSO.html')
-	@app.route('/entrevistas.html')
-	def entrevistas():
-		return render_template('blog/entrevistas.html')
+#	@app.route('/entrevistas.html')
+#	def entrevistas():
+#		return render_template('blog/entrevistas.html')
  

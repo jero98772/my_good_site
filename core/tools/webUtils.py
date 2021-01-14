@@ -221,7 +221,6 @@ def readtxtstr(name):
 	content = ""
 	with open(name+".txt", 'r') as file:
 		for i in file.readlines():
-			print(i)
 			content += str(i).replace("\n","")
 	return content
 def writetxt(name,content):
