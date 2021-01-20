@@ -104,6 +104,8 @@ venv.bak/
 .mypy_cache/
 
 #files
+data/keys/*
+data/distributionScript/*
 data/modelsAI/*
 data/tmp/*
 core/static/img/blog/*

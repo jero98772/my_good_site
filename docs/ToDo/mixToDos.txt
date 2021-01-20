@@ -1,15 +1,19 @@
 terminar 
+- uso "distribuido"
+- mapa ...avansando mientras se reoptimisar y docuemntar
 
--mapa
- 
+- analis del codigo 
+-- porcentaje de lineas de codigo por tema y tecnologia interesante una grafica
+-- visitas estadisticas de visitas
+
+cuando termine de optimisar 
+... reoptimisar y docuemntar
+... organisar gas 
+... mejorar la criptografia y cifrar la pagina
+
 - DiaNA , de espylon 
 -- grafica
 -- version web
-- dsoonmath
-- tt con ht , tt juego
--- prototipo
--- graficas
--- hacer el juego unirlo al personaje 
 
 
 optimisar
@@ -19,8 +23,8 @@ cuando termine de optimisar
 ... mejorar la criptografia y cifrar la pagina
 hackido
 cuando finalise vacasiones ... el nuevo hackido (cuando se mejore el uso de bases de datos que se haga escalable)
-criptoaudio
-cuando aprenda ... descomponer audio y meter le cosas (texto o vos ) adentro y que se escuhe igual,encriptarlo o gardar cosas en audio?
+criptoaudio <mejor no>
+cuando aprenda ... descomponer audio y meter le cosas (texto o vos ) adentro y que se escuhe igual,encriptarlo o gardar cosas en audio? <mejor no>
 canairio pm25predict
 cuando no sean tablas ... canairio pm25predict
 celular
@@ -38,6 +42,7 @@ entrevistas ... cuando valga la pena
 
 -mapa
 -mi simbolo <ok> 
+- dsoonmath <ok>
 - DiaNA , de espylon 
 -- pequeña optimisacion <ok>
 -- grafica

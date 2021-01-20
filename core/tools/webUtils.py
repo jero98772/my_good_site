@@ -8,20 +8,37 @@ import os
 import datetime
 #import subprocess
 from random import randint
-esMesesCon31dias = [True,"febrero28",True,False,True,False,True,True,False,True,False,True]
+months31Days = [True,"feb28",True,False,True,False,True,True,False,True,False,True]
 simbols = " !#$%&'()*+,-./0123456789:;<=>?@[\\]^_`{|}~"
 #debug functions
-def p(*args,space):
+def p(*args,space = 5):
+	"""fast print helpful in big log  p(str , [jump lines = 5])"""
 	for i in args:
 		print(space*"\n",i,"\n"*space)
-#short functions
 def rnd(x):
+	"""fast random number using random lib rnd(x): return random.randint(0,x)"""
 	return randint(0,x)
-def imgNumName(dirname):
-	return str(len(os.listdir(dirname)))
+#short functions
+def lenDirInt(dirname):
+	"""
+	lenDirInt(directory), return int
+		counts the number of folders and files in a directory """
+	return len(os.listdir(dirname))
+#functions
 def img2NumName(dirname):
+	"""
+	img2NumName(dirname),return int
+	returns the number of directories every 2 directories
+	like , folder with 6 elements
+	element0 = 0 = img2NumName(<folder with 0 elements>)
+	element1 = 0 = img2NumName(<folder with 1 elements>)
+	element2 = 1 = img2NumName(<folder with 2 elements>)
+	element3 = 1 = img2NumName(<folder with 3 elements>)
+	element4 = 2 = img2NumName(<folder with 4 elements>)
+	element5 = 2 = img2NumName(<folder with 5 elements>)
+	"""
 	try:
-		lendir = len(os.listdir(dirname))
+		lendir = lenDirInt(dirname)
 		if lendir % 2 == 0:
 			return lendir/2
 		else :
@@ -31,21 +48,27 @@ def img2NumName(dirname):
 	return lendir
 #useful functions
 def mayor(num1,num2):
+	"""return higher number , of 2 numbers, mayor(num1,num2)"""
 	if num1>num2:
 		return num1
 	else:
 		return num2
 def menor(num1,num2):
+	"""return least number , of 2 numbers, menor(num1,num2)"""
 	if num1<num2:
 		return num1
 	else:
 		return num2
 def mismaContraseña(password1,password2):
+	"""mismaContraseña(password1,password2) return bool
+		if are same password of arg 1 and arg 2 , return True if are diferent return False"""
 	if password1 == password2:
 		return True
 	else:
 		return False
 def minCaracteresPass(password,cantidad):
+	"""minCaracteresPass(password,cantidad); return bool
+	 is to see if a password meets minimum characters  return True else False """
 	if len(password) > cantidad:
 		return True
 	else:
@@ -125,14 +148,13 @@ def dias29feb(años):
 	return  diasX29feb 
 def dias2mes(dias):
 	#days with 31 days
-	#esMesesCon31dias = [True,"febrero28",True,False,True,False,True,True,False,True,False,True]
 	meses = 0
 	i = 0
 	while mes >= i :
 		mesI = i%12
 		if esMesesCon31dias[30+mesI] == 31:
 			meses += 1
-		elif esMesesCon31dias[30-2] == "febrero28":
+		elif esMesesCon31dias[30-2] == "feb28":
 			meses += 1
 		else:
 			meses += 1
@@ -140,14 +162,13 @@ def dias2mes(dias):
 	return dias
 def meses2Dias(mes):
 	#days with 31 days
-	#esMesesCon31dias = [True,"febrero28",True,False,True,False,True,True,False,True,False,True]
 	dias = 0
 	i = 0
 	while mes >= i :
 		mesI = i%12
 		if esMesesCon31dias[mesI]:
 			dias += 31
-		elif esMesesCon31dias[mesI] == "febrero28":
+		elif esMesesCon31dias[mesI] == "feb28":
 			dias += 28
 		else:
 			dias += 30
@@ -211,6 +232,9 @@ def deletefiles(path):
 		os.remove(path+".json")
 	if os.path.isfile(path+".png") :			
 		os.remove(path+".png")
+def readtxtline(name):
+	with open(name, 'r') as file:
+		return str(file.readline())
 def readtxt(name):
 	content = []
 	with open(name+".txt", 'r') as file:
