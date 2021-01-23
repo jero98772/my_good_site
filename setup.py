@@ -8,6 +8,6 @@ setup(
 	description='my good place with good proyects ',
 	url='https://jero98772.pythonanywhere.com/',
 	packages=find_packages(),
-    install_requires=['flask', 'tensorflow', 'numpy', 'opencv-python', 'removebg', ' pycrypto ', 'influxdb', 'matplotlib'],
+    install_requires=['Flask', 'tensorflow', 'numpy', 'opencv-python', 'removebg', ' pycrypto ', 'influxdb', 'matplotlib'],
     include_package_data=True,
 	)

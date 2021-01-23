@@ -74,6 +74,9 @@ def minCaracteresPass(password,cantidad):
 	else:
 		return False
 def contraseñaSegura(password):
+	"""
+	contraseñaSegura(str), return True if str have numbers ,strings and symbols else return False
+	"""
 	haynumeros = False
 	hayletras = False
 	haysimbolos = False
@@ -97,21 +100,27 @@ def contraseñaSegura(password):
 	else:
 		return False
 def camposVacios(userName,password1,password2,email,date):
+	"""camposVacios(userName,password1,password2,email,date) ,return bool ,if args = "" """
 	if userName == "" and password1 == "" and password2 == "" and email == "" and date == "":
 		return False
 	else:
 		return True
 def campoVacio(text):
+	"""campoVacio(text), return True if text = '' else False"""
 	if text == "":
 		return True
 	else: 
 		return False
 def esCorreo(email):
+	"""esCorreo(string) ,return True if string have '.' and '@'"""
 	if "@" in email and "." in email:
 		return True
 	else:
 		return False
 def generatePassword():
+	"""generatePassword(),return srtring
+	generate random string 
+	"""
 	genPassowrd = ""
 	for i in range(0,16):
 		if len(genPassowrd) >= 16 and len(genPassowrd)-len(hexStr) <= 16:
@@ -126,6 +135,10 @@ def generatePassword():
 			break
 	return genPassowrd
 def fechaStr2Arr(fecha):
+	"""
+	fechaStr2Arr(<date as string>) , return date as array
+	convert date to array
+	"""
 	fechaArr = []
 	tmp = ""
 	for i in str(fecha):
@@ -138,16 +151,26 @@ def fechaStr2Arr(fecha):
 		fechaArr.append(tmp)
 	return fechaArr
 def hay29feb(año):
+	"""
+	hay29feb(Yeard) 
+	if that yeard have 29 of February,return True"""
 	if año % 4 == 0:
 		feb29Booll  = True
 	else :
 		feb29Booll  = False
 	return feb29Booll
 def dias29feb(años):
+	"""
+	dias29feb(yeard), return yeard // 4
+		to add up the years with February 29
+	"""
 	diasX29feb = años // 4
 	return  diasX29feb 
 def dias2mes(dias):
-	#days with 31 days
+	"""
+	dias2mes(<numbers of days>):return months 
+		how many days in a number of months
+	"""
 	meses = 0
 	i = 0
 	while mes >= i :
@@ -159,9 +182,12 @@ def dias2mes(dias):
 		else:
 			meses += 1
 		i+=1
-	return dias
+	return meses
 def meses2Dias(mes):
-	#days with 31 days
+	"""
+	meses2Dias(months): return days
+		quantity days have that month 31,30,28...29  
+	"""
 	dias = 0
 	i = 0
 	while mes >= i :
@@ -175,19 +201,34 @@ def meses2Dias(mes):
 		i+=1
 	return dias
 def hoyArr():
+	"""
+	return date as array
+	"""
 	hoy = fechaStr2Arr(str(datetime.datetime.today().strftime('%Y-%m-%d')))
 	return hoy
 def hoyStr():
+	"""
+	return date as string
+	"""
 	hoy = str(datetime.datetime.today().strftime('%Y-%m-%d'))
 	return hoy
 def hoyminsArr():
+	"""
+	return date and hours and minutes as array
+	"""
 	hoy = fechaStr2Arr(datetime.datetime.today().strftime("%m/%d/%Y, %H:%M"))
 	return hoy
 def hoyminsStr():
+	"""
+	return date and hours and minutes as string
+	"""
 	hoy = datetime.datetime.today().strftime("%m/%d/%Y, %H:%M")
 	return hoy
 def diasTotales(dia):
-	#dia = fechaStr2Arr(dia)
+	"""
+	diasTotales(<date with days ,months and yeards as array[yeards,months,days]>)
+	return total days of date
+	"""
 	años = int(dia[0])
 	añosTotales = años * 365
 	meses = int(dia[1])

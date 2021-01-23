@@ -104,6 +104,10 @@ venv.bak/
 .mypy_cache/
 
 #files
+build/*
+dist/*
+my_good_site.egg-info/*
+normal/*
 data/keys/*
 data/distributionScript/*
 data/modelsAI/*

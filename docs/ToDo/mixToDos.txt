@@ -1,7 +1,7 @@
 terminar 
 - uso "distribuido"
 - mapa ...avansando mientras se reoptimisar y docuemntar
-
+- corregir errores por parte datos como los modelos IA , documentos de texto plano 
 - analis del codigo 
 -- porcentaje de lineas de codigo por tema y tecnologia interesante una grafica
 -- visitas estadisticas de visitas
@@ -34,7 +34,7 @@ cuando haga un prototipo de imagenes por url ... imagenes por url lo implento en
 entrevistas ... cuando valga la pena
 - programa para entrevistas  tipo chat con relacion al numero 33 , 3 paginas de entrevistas de 11 personas, 3 cosas de  la persona , color ,sonido , animal,  cultura con la que se identifican ,contaco opcional o alguna frase 
 - solucionar ia curapeces ... sin depender de una api
-
+- montar reflexiones ,frases ,historias... con eseñansas eticas
 
 ... mejorar manejo de python 
 ... pasar valores a los arrays por referencia?

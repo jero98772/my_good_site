@@ -8,7 +8,6 @@ from flask import Flask, render_template, request, flash, redirect ,session
 from core.tools.webUtils import generatePassword ,deleteFish,getExt,img2NumName
 from core.tools.cryptotools import enPassowrdHash
 from core.tools.dbInteracion import dbInteracion
-from core.wwwof.curapeces import predict
 from core.tools.flaskUtils import multrequest
 from core.tools.libWithoutSuport import clearimg
 import os
@@ -58,25 +57,29 @@ class wwwof():
 	def curapeces():
 		imgdir = "core/static/img/wwwof/curapeces/"
 		sickness = ""
-		fPredict = predict()
-		checkPredict = predict()
-		if request.method == 'POST':
-			file = request.files["file"]
-			ext = getExt(file)
-			fileName = imgdir+str(img2NumName(imgdir))+"fish"+ext
-			file.save(fileName)
-			#remeber clear background
-			clearimg(fileName)
-			fPredict.pez = file
-			checkPredict.pez = file
-			diases= fPredict.predict()
-			checkDiases = checkPredict.predict()
-			outSickness = fPredict.ChosePredeictionEn(diases)
-			checkSickness = fPredict.ChosePredeictionEn(checkDiases)
-			if outSickness == checkSickness :
-				sickness = outSickness
-			else:
-				sickness = "please try again"
+		try:
+			from core.wwwof.curapeces import predict
+			fPredict = predict()
+			checkPredict = predict()
+			if request.method == 'POST':
+				file = request.files["file"]
+				ext = getExt(file)
+				fileName = imgdir+str(img2NumName(imgdir))+"fish"+ext
+				file.save(fileName)
+				#remeber clear background
+				clearimg(fileName)
+				fPredict.pez = file
+				checkPredict.pez = file
+				diases= fPredict.predict()
+				checkDiases = checkPredict.predict()
+				outSickness = fPredict.ChosePredeictionEn(diases)
+				checkSickness = fPredict.ChosePredeictionEn(checkDiases)
+				if outSickness == checkSickness :
+					sickness = outSickness
+				else:
+					sickness = "please try again"
+		except:
+			sickness = "Error 500, you need a model for predict diase of that fish. is a error form server please report to curapeces@gmail.com"
 		return render_template('wwwof/curapeces/curapeces.html',prediccion=sickness)
 	@app.route(webpage+"data_basecsv.html", methods=['GET','POST'])
 	def data_basecsv():
