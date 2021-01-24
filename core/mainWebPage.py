@@ -23,14 +23,14 @@ class webpage():
 	proyectsDireccions = ["aircolombia","htmlpower","htmlpower/little_recursion","htmlpower/iframe_power","pm25predict","pm25predict/pm25predictUnloquer","pm25predict/pm25predictCanairio","pandemaths","pandemathsout","DsoonMath","criptools","criptools/criptoretos","criptools/cesar","criptools/hashs","criptools/criptoolsencblog","criptools/rsa","criptools/criptophone","img2asciiart","gas","gas_login"]
 	#forgottenproyects = ["gas/actualisar<string:id>","gas/editar<string:id>","gas/eliminar/<string:id>"]
 	try:
-		distributedWebLink = readtxtline("data/distributionScript/web.txt")
+		distributedWebLink = readtxtline("data/distributionScript/web.txt")#REMBER the url cannot end with "/"
 		if webIsOniline(distributedWebLink):
 			otherwwwofDireccions= ["curapeces","data_basecsv"]
 			otherproyectsDireccions =["pm25predict","pm25predict/pm25predictUnloquer"]
-			DistributedWebWithIframe(urlWwwof,otherwwwofDireccions,app,distributedWebLink)
-			DistributedWebWithIframe(urlProyects,otherproyectsDireccions,app,distributedWebLink)
-			map(wwwofDireccions.remove,otherwwwofDireccions)
-			map(proyectsDireccions.remove,otherproyectsDireccions)
+			list(map(wwwofDireccions.remove,otherwwwofDireccions))
+			list(map(proyectsDireccions.remove,otherproyectsDireccions))
+			distributedWebWithIframe(urlWwwof,otherwwwofDireccions,app,distributedWebLink)
+			distributedWebWithIframe(urlProyects,otherproyectsDireccions,app,distributedWebLink)
 			print(wwwofDireccions,proyectsDireccions)
 		joinWebpage(urlWwwof,wwwofDireccions,appwwwof,app)
 		joinWebpage(urlProyects,proyectsDireccions,appproyects,app)

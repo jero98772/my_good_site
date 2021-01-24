@@ -1,58 +1,64 @@
-terminar 
+terminar o hacer
 - uso "distribuido"
 - mapa ...avansando mientras se reoptimisar y docuemntar
-- corregir errores por parte datos como los modelos IA , documentos de texto plano 
-- analis del codigo 
+- analis del pagina
 -- porcentaje de lineas de codigo por tema y tecnologia interesante una grafica
 -- visitas estadisticas de visitas
-
-cuando termine de optimisar 
-... reoptimisar y docuemntar
-... organisar gas 
-... mejorar la criptografia y cifrar la pagina
-
 - DiaNA , de espylon 
 -- grafica
 -- version web
+- subir reflexiones, historias ... con menjsaejes eticos
+- Dsoon math con sympy
+- canairio pm25predict (esperar que no sean tablas)
+-- adaptarlo a canairio 
+-- mejorar o terminar el programa , solucionar errores
+- datos publicos
+-- buscar donde ponerlos para descargar
+--- imagenes peces enfermos 
+-- buscar donde poner multimidedia sin subirlo dorectamente a la pagina para no mal gastar el espacio de wiki.unlouqer.org 
 
-
-optimisar
-cuando termine de optimisar 
-... reoptimisar
-... organisar gas 
-... mejorar la criptografia y cifrar la pagina
-hackido
-cuando finalise vacasiones ... el nuevo hackido (cuando se mejore el uso de bases de datos que se haga escalable)
-criptoaudio <mejor no>
-cuando aprenda ... descomponer audio y meter le cosas (texto o vos ) adentro y que se escuhe igual,encriptarlo o gardar cosas en audio? <mejor no>
-canairio pm25predict
-cuando no sean tablas ... canairio pm25predict
-celular
-cuando no tenga nada que hacer ... pensar si seria bueno una version para celular 
-url
-cuando haga un prototipo de imagenes por url ... imagenes por url lo implento en curapeces ,databasecsv, ascii art
-entrevistas ... cuando valga la pena
-- programa para entrevistas  tipo chat con relacion al numero 33 , 3 paginas de entrevistas de 11 personas, 3 cosas de  la persona , color ,sonido , animal,  cultura con la que se identifican ,contaco opcional o alguna frase 
-- solucionar ia curapeces ... sin depender de una api
-- montar reflexiones ,frases ,historias... con eseñansas eticas
-
-... mejorar manejo de python 
-... pasar valores a los arrays por referencia?
-... libreria logica en c para python? 
-
+#tareas finalisdas
 -mapa
 -mi simbolo <ok> 
 - dsoonmath <ok>
 - DiaNA , de espylon 
 -- pequeña optimisacion <ok>
--- grafica
+-- grafica <ok pero mejor no ...>
 -- version web
 - ascii to img <ok>
 - criptools y sus rsa y blog encriptado ilistrado ,cripto phone <ok>
-- dsoonmath
-- solucionar ia curapeces
-- tt con ht , tt juego
+- dsoonmath <ok>
+- solucionar ia curapeces  
+-- remover background <ok>
+--- rentrenar la IA sin backcground (se estaba entrenando con un background en blanco)
+- tt con ht , tt juego <Mmm mejor no>
 -- prototipo
 -- grafcas
 -- hacer el juego unirlo al personaje 
+- empesar a trabajar de nuevo en hackido (importante terminarlo)
+-- organisar bases de datos por el tema de las tablas , que la cantidad de tablas no sea un problema por la cantidad
+- criptoaudio <mejor no>
+- disponible para celular (diseño responsibe)
+-- vista general <ok>
+-- solucionar errores ,mejorar vista de iframes ,videos,imagenes... 
 
+#proceso con antojos
+- optimisar
+-- mejorar manejo de python 
+-- pasar valores a los arrays por referencia
+-- libreria logica en c para python (cpython)
+- docuemntar
+-- entradas del blog por temas 
+-- funciones
+- repensar ,rehacer , optimisar o mejorar proyectos y temas de la pagina
+-- gas
+-- mejorar el cifrado
+-- adaptar entrada de datos url para curapeces ,img2asciiart 
+- solucionar ia curapeces 
+-- sin depender de una api
+-- re entrenar los mdoelos
+- entendiemiento y lectura
+-- pasar ingles el codigo
+-- pasar a ingles el blog
+-- ver como se puede mejorar el orden del codigo para que sea mas entendible 
+-- intentar hacer un traductor o algo que sirva para automatisar este proceso
