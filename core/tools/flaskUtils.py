@@ -4,7 +4,7 @@
 my_good_site - 2020 - por jero98772
 my_good_site - 2020 - by jero98772
 """
-from flask import request
+from flask import request,render_template_string
 def multrequest(items):	
 	values = []
 	for item in items:		
@@ -47,6 +47,5 @@ def distributedWebWithIframe(url,direccions,webApp,runWeb):
 	for webroute in direccions:		
 		@webApp.route(url+str(webroute)+".html", endpoint=webroute , methods=['GET','POST'])
 		def site():
-			return "<iframe src='"+str(runWeb)+url+str(webroute)+".html#webContent"+"' scrolling='no' style='position: absolute; height: 100%;width: 100%; border: none'> </iframe>"
+			return render_template_string("{% extends  '"+url+"template.html'%}{% block content %}<iframe src='"+str(runWeb)+url+str(webroute)+".html#webContent"+"' scrolling='no' style='position: absolute; height: 100%;width: 100%; border: none'> </iframe> {% endblock %}")
 		return site()
-	

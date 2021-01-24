@@ -241,22 +241,34 @@ def diasTotales(dia):
 		diasTotales = añosTotales + dias + diasDeMeses 
 	return diasTotales
 def minsTotales(dia):
+	"""
+	diasTotales(<date and hours and minutes >)
+	return total minute of date	
+	"""
 	#fechaStr2Arr(dia)
 	diasTotalesVar = diasTotales(dia[:3])
 	minsTotales = (((diasTotalesVar)*24)+int(dia[3])*60)+int(dia[4]) 
 	return minsTotales	
-def diferneciaFecha(antigua,nueva):
-	diasAntigua = diasTotales(antigua)
-	diasNueva = diasTotales(nueva)
-	if diasNueva > diasAntigua:
-		difernecia = diasNueva - diasAntigua 
+def diferneciaFecha(date,date2):
+	"""
+	diferneciaFecha(date,date2)
+	return difference of days of the 2 dates as int
+	"""
+	date = diasTotales(date)
+	date2 = diasTotales(date2)
+	if date2 > date:
+		difference= date2 - date 
 	else:
-		difernecia = diasAntigua - diasNueva
-	return difernecia
-def Mas1Dia(antigua):
-	nueva = hoyArr()
-	difernecia = diferneciaFecha(antigua,nueva)
-	if difernecia == 0 :
+		difference = date - date2
+	return difference
+def Mas1Dia(lastDate):
+	"""
+	Mas1Dia(<date>)
+	return True if date is different to date now
+	"""
+	newDate = hoyArr()
+	difference = diferneciaFecha(lastDate,newDate)
+	if difference == 0 :
 		return True
 	else:
 		return False
