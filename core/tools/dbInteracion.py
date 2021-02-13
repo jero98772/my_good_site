@@ -87,8 +87,20 @@ class dbInteracion():
 	def allData(self):
 		self.dbcomand = " SELECT * FROM {0} ;".format(self.tableName)
 		self.cursor.execute(self.dbcomand)
-		self.allFisheslist = self.cursor.fetchall()
-		return self.allFisheslist
+		self.alldata = self.cursor.fetchall()
+		return self.alldata
+	def getSum(self,column):
+		self.column = column
+		self.dbcomand = " SELECT sum({0}) FROM {1} ;".format(self.column,self.tableName)
+		self.cursor.execute(self.dbcomand)
+		self.alldata = self.cursor.fetchall()
+		return self.alldata
+	def getAvg(self,column):
+		self.column = column
+		self.dbcomand = " SELECT avg({0}) FROM {1} ;".format(self.column,self.tableName)
+		self.cursor.execute(self.dbcomand)
+		self.alldata = self.cursor.fetchall()
+		return self.alldata
 	def putNewFishes(self,dbItems,data):
 		self.dbItems = dbItems
 		self.data = data

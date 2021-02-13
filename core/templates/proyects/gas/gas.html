@@ -21,19 +21,20 @@
 	<table style=" width:100%;" border="1">
 		<tr>
 			
-			<td><h2>articulo</h2></td>
-			<td><h2>categoria del articulo</h2></td>
-			<td><h2>precio</h2></td>
-			<td><h2>fecha cuando ingreso el pago</h2></td>
-			<td><h2>foto [NO ESTA HABILITADO DEBIDO AL POCO ESPACIO]</h2></td>
+			<td><h2>item</h2></td>
+			<td><h2>category</h2></td>
+			<td><h2>thread</h2></td>
+			<td><h2>price</h2></td>
+			<td><h2>amount</h2></td>
+			<td><h2>date</h2></td>
 		</tr>
 		<tr>
-			<td><input type="text" name="thing" placeholder="articulo en la que se gasto" ></td>
+			<td><input type="text" name="item" placeholder="articulo en la que se gasto" ></td>
 			<td><input type="text" name="category" placeholder="categoria del articulo" autocomplete="on"></td>
+			<td><input type="text" name="thread" placeholder="palabra clave para identificar esa compra o esas compras" ></td>
 			<td><input type="text" name="price" placeholder="precio de la cosa" ></td>
-			<td><input type="text" name="moment" placeholder="fecha cuando ingreso el pago" value="{{now}}"></td>
-			<td><input type="file" name="img_factura" placeholder="foto factura" ></td>
-
+			<td><input type="text" name="amount" placeholder="cantidad de la cosa" ></td>
+			<td><input type="text" name="date" placeholder="fecha cuando ingreso el pago" value="{{now}}"></td>
 		</tr>
 	</table>
 <button type="summit ">summit </button>

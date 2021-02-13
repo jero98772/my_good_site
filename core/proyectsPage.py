@@ -262,27 +262,55 @@ class proyects():
 	"""#proyects without my suport#"""
 	@app.route(webpage+"gas.html", methods = ['GET','POST'])
 	def gas():
-		db = shortcut()
+		dbname = "data/dataBases"
+		dbPath = dbName + "/personalweb.db"
+		table = "gastos"
+		priceCol = "price"
+		dataNames = ["item","category","thread","price","amount","date"]
+		db = dbInteracion(dbPath)
+		db.connect()
 		timenow = hoyminsStr()
+		#
+		db = shortcut()
+		#
+		#tablas en las bases de datos
+		#login : pwd y usr
+		#gastos<usuario> : articulo ,categoria ,precio,cantidad  , asunto (buscar por asunto y filtrar),fecha
+		#si el articulo esta repetido sumarlo select sum( select count(cantidad) form gastos ) form  gastos , select count(cantidad) form gastos 
+		"""
+		veces ingresado *
+		cantidad de veces ingresado + cantidad ingresda de algo
+		cantidad de veces ingresado = select sum( select count( select cantidad from gatsos where articulo = (select DISTINCT articulo form gastos) ) form gastos ) form  gastos 
+		cantidad ingresda = SELECT SUM (cantidad) from gastos ,sum(select cantidad from gastos where articulo = (select DISTINCT articulo form gastos) )
+		"""
 		if not session.get('loged'):
 			return render_template('proyects/gas/gas_login.html')	
 		else:
 			user = session.get('user')
+			db.connect(table+user)
+			rows = db.allData()
+			pricesum = db.getSum(priceCol)
+			priceavg = db.getAvg(priceCol)
+
+			#
 			db.execute(" SELECT * FROM gastos"+user)
 			rows = db.fetchall()
 			db.execute(" SELECT sum(price) FROM gastos"+user)
 			pricesum = db.fetchall()
 			db.execute(" SELECT avg(price) FROM gastos"+user)
 			priceavg = db.fetchall()
+			#
 			if request.method == 'POST':
+				data = multrequest(dataNames)
+				#ingresar data en la base de datos
 				moment = str(request.form["moment"])
 				price = float(request.form["price"])
 				thing = str(request.form["thing"])
 				category = str(request.form["category"])
-				img = request.files.get("img_factura")
+				#img = request.files.get("img_factura")
 				values = [price,thing]
 				user = session.get('user')
-				valuesstr = ['price','thing']
+				#valuesstr = ['price','thing']
 				db.execute("INSERT INTO gastos{0}  (price,thing,category,moment) VALUES ({1},'{2}','{3}','{4}');".format(user,price,thing,category,moment))
 				db.connection.commit()
 				db.close()

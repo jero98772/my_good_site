@@ -39,6 +39,7 @@ install some dependences and go [localhost:9600](localhost:9600)
 run setup (as root)  for install dependences
 
 	python setup.py install
+(rember need virtual envriroment )
 
 # topics with this page
 

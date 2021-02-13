@@ -45,7 +45,8 @@ def joinWebpage(url,direccions,webApp,acualapp):
 		return site()
 def distributedWebWithIframe(url,direccions,webApp,runWeb):
 	for webroute in direccions:		
+		print(webroute)
 		@webApp.route(url+str(webroute)+".html", endpoint=webroute , methods=['GET','POST'])
 		def site():
-			return render_template_string("{% extends  '"+url+"template.html'%}{% block content %}<iframe src='"+str(runWeb)+url+str(webroute)+".html#webContent"+"' scrolling='no' style='position: absolute; height: 100%;width: 100%; border: none'> </iframe> {% endblock %}")
+			return render_template_string("{% extends  '"+url+"template.html'%}{% block content %}<iframe src='"+str(runWeb)+url+str(webroute)+".html#webContent"+"' scrolling='no' class='frameDistrution'> </iframe> {% endblock %}")
 		return site()

@@ -23,6 +23,7 @@ class webpage():
 	proyectsDireccions = ["aircolombia","htmlpower","htmlpower/little_recursion","htmlpower/iframe_power","pm25predict","pm25predict/pm25predictUnloquer","pm25predict/pm25predictCanairio","pandemaths","pandemathsout","DsoonMath","criptools","criptools/criptoretos","criptools/cesar","criptools/hashs","criptools/criptoolsencblog","criptools/rsa","criptools/criptophone","img2asciiart","gas","gas_login"]
 	#forgottenproyects = ["gas/actualisar<string:id>","gas/editar<string:id>","gas/eliminar/<string:id>"]
 	try:
+		print("try")
 		distributedWebLink = readtxtline("data/distributionScript/web.txt")#REMBER the url cannot end with "/"
 		if webIsOniline(distributedWebLink):
 			otherwwwofDireccions= ["curapeces","data_basecsv"]
@@ -30,11 +31,13 @@ class webpage():
 			list(map(wwwofDireccions.remove,otherwwwofDireccions))
 			list(map(proyectsDireccions.remove,otherproyectsDireccions))
 			distributedWebWithIframe(urlWwwof,otherwwwofDireccions,app,distributedWebLink)
+			print("if")
 			distributedWebWithIframe(urlProyects,otherproyectsDireccions,app,distributedWebLink)
 			print(wwwofDireccions,proyectsDireccions)
 		joinWebpage(urlWwwof,wwwofDireccions,appwwwof,app)
 		joinWebpage(urlProyects,proyectsDireccions,appproyects,app)
 	except:
+		print("except")
 		joinWebpage(urlWwwof,wwwofDireccions,appwwwof,app)
 		joinWebpage(urlProyects,proyectsDireccions,appproyects,app)
 		joinWebpageGas(urlProyects,appproyects,app)
@@ -102,6 +105,14 @@ class webpage():
 	def manifest():
 		"""me and some cultures of my interest ,I build my Manifest and I read those ofI read those of others others"""
 		return render_template("blog/manifest.html")
+	@app.route("/blog/inventor_de_una_solucion.html")
+	def main_inventor():
+		""" little history """
+		return render_template("blog/inventor_de_una_solucion/main.html")
+	@app.route("/blog/inventor_de_una_solucion/1.html")
+	def main_inventor1():
+		""" a little history , 1 chapter """
+		return render_template("blog/inventor_de_una_solucion/1.html")	
 	@app.route('/ChatSO.html')
 	def ChatSO():
 		""" access to irc channel #jero98772 with irc kiwi """
