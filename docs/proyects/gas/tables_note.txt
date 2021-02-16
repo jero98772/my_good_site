@@ -1,10 +1,10 @@
 CREATE TABLE "gastos<nombre>" (
-	"things_id"	INTEGER,
-	"price"	REAL,
-	"amount" INTEGER,
+	"item_id"	INTEGER,
 	"item"	TEXT,
 	"category"	TEXT,
 	"thread"	TEXT,
+	"price"	REAL,
+	"amount" INTEGER,
 	"date"	TEXT,
-	PRIMARY KEY("things_id" AUTOINCREMENT)
+	PRIMARY KEY("item_id" AUTOINCREMENT)
 );

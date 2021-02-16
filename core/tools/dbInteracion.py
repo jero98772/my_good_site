@@ -47,7 +47,7 @@ class dbInteracion():
 	def findUser(self,user):
 		self.user = str(user)
 		self.userTuple = (self.user,)
-		self.dbcomand =  "SELECT username FROM user Where username =  ? "
+		self.dbcomand =  "SELECT usr FROM {0} Where usr =  ? ".format(self.tableName)
 		self.cursor.execute(self.dbcomand,self.userTuple)
 		self.userHash = self.cursor.fetchall()
 		try:
@@ -60,7 +60,7 @@ class dbInteracion():
 	def findPassword(self,password):
 		self.password = str(password)
 		self.passwordTulple = (self.password,)
-		self.dbcomand =  "SELECT password FROM user Where password =  ? "
+		self.dbcomand =  "SELECT pwd FROM {0} Where pwd =  ? ".format(self.tableName)
 		self.cursor.execute(self.dbcomand,self.passwordTulple)
 		self.passwordHash = self.cursor.fetchall()
 		try:
@@ -89,6 +89,25 @@ class dbInteracion():
 		self.cursor.execute(self.dbcomand)
 		self.alldata = self.cursor.fetchall()
 		return self.alldata
+	def allDataList(self):
+		self.dbcomand = " SELECT * FROM {0} ;".format(self.tableName)
+		self.cursor.row_factory = lambda cursor, row: row[0]
+		self.cursor.execute(self.dbcomand)
+		self.alldata = self.cursor.fetchall()
+		return self.alldata
+	def getColumn(self,column):
+		self.column = column
+		self.dbcomand = " SELECT {0} FROM {1} ;".format(self.column,self.tableName)
+		self.cursor.execute(self.dbcomand)
+		self.alldata = self.cursor.fetchall()
+		return self.alldata
+	def getDataWhere(self,column,equals):
+		self.equals = equals
+		self.column = column
+		self.dbcomand = " SELECT * FROM {0} WHERE {1} = {2} ;".format(self.tableName,self.column,self.equals)
+		self.cursor.execute(self.dbcomand)
+		self.alldata = self.cursor.fetchall()
+		return self.alldata
 	def getSum(self,column):
 		self.column = column
 		self.dbcomand = " SELECT sum({0}) FROM {1} ;".format(self.column,self.tableName)
@@ -101,10 +120,16 @@ class dbInteracion():
 		self.cursor.execute(self.dbcomand)
 		self.alldata = self.cursor.fetchall()
 		return self.alldata
+	def deleteWhere(self,column,equals):
+		self.equals = equals
+		self.column = column
+		self.dbcomand = " DELETE FROM {0} WHERE {1} = {2} ;".format(self.tableName,self.column,self.equals)
+		self.cursor.execute(self.dbcomand)
+		self.alldata = self.cursor.fetchall()
+		return self.alldata
 	def putNewFishes(self,dbItems,data):
 		self.dbItems = dbItems
 		self.data = data
-		self.numitems = "?,"*(len(self.data)-1)
 		self.dbcomand = str("INSERT INTO {0} {1}  VALUES {2} ;".format(self.tableName,tuple(self.dbItems),tuple(self.data)))
 		self.cursor.execute(self.dbcomand)
 		self.cursor.connection.commit()
@@ -144,7 +169,6 @@ class dbInteracion():
 	def putNewMsgsBlog(self,dbItems,data):
 		self.dbItems = dbItems
 		self.data = data
-		self.numitems = "?,"*(len(self.data)-1)
 		self.dbcomand = str("INSERT INTO {0} {1}  VALUES {2} ;".format(self.tableName,tuple(self.dbItems),tuple(self.data)))
 		self.cursor.execute(self.dbcomand)
 		self.cursor.connection.commit()
@@ -154,5 +178,24 @@ class dbInteracion():
 		self.cursor.execute(self.dbcomand)
 		self.data = self.cursor.fetchall()
 		return self.data
+	def addGas(self,dbItems,data ):
+		self.dbItems = dbItems
+		self.data = data
+		self.dbcomand = str("INSERT INTO {0} {1}  VALUES {2} ;".format(self.tableName,tuple(self.dbItems),tuple(self.data)))
+		print(self.dbcomand)
+		self.cursor.execute(self.dbcomand)
+		self.cursor.connection.commit()
+	def updateGas(self,updateSentence, id):
+		self.updateSentence = updateSentence
+		self.id = id
+		self.dbcomand = str("UPDATE {0} SET {1} WHERE item_id = {2}; ".format((self.tableName),tuple(self.updateSentence),self.id))
+		self.cursor.execute(self.dbcomand)
+		self.cursor.connection.commit()
+	def getDistinctWhere(self,equals):
+		self.equals = equals
+		self.dbcomand = " SELECT DISTINCT * FROM {0} WHERE item_id = {1} ;".format(self.tableName,self.equals)
+		self.cursor.execute(self.dbcomand)
+		self.alldata = self.cursor.fetchall()
+		return self.alldata
 	def closeDB(self):
 		self.cursor.close()

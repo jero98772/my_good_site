@@ -407,3 +407,8 @@ def img2asciiart(img,size = 15,intensity = 255,replaceItem = 0,items = ["@"," "]
 					imgstr[count,cont] = items[1]
 	outfig = [imgresized,imgstr]
 	return outfig 
+def setUpdate(dataname, data):
+	sentence = dataname[0]+" = "+ data[0]
+	for i ,ii in zip(dataname[1:] , data[1:]):
+		sentence += ","+dataname[i]+" = "+ data[ii]
+	return sentence
