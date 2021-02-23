@@ -1,12 +1,9 @@
 terminar o hacer
 - uso "distribuido"
 - mapa ...avansando mientras se reoptimisar y docuemntar
-- analis del pagina
--- porcentaje de lineas de codigo por tema y tecnologia interesante una grafica
+- analis del pagina 
+-- porcentaje de lineas de codigo por tema y tecnologia interesante una grafica <mejor cuando halla mas avanses en peces>
 -- visitas estadisticas de visitas
-- DiaNA , de espylon 
--- grafica
--- version web
 - subir reflexiones, historias ... con menjsaejes eticos
 - Dsoon math con sympy
 - canairio pm25predict (esperar que no sean tablas)
@@ -16,6 +13,8 @@ terminar o hacer
 -- buscar donde ponerlos para descargar
 --- imagenes peces enfermos 
 -- buscar donde poner multimidedia sin subirlo dorectamente a la pagina para no mal gastar el espacio de wiki.unlouqer.org 
+- no producir errores por dependencias como tensorflow pero generar un mensaje 
+
 
 #tareas finalisdas
 -mapa
@@ -24,7 +23,7 @@ terminar o hacer
 - DiaNA , de espylon 
 -- pequeña optimisacion <ok>
 -- grafica <ok pero mejor no ...>
--- version web
+-- version web <mejor no , mucho print>
 - ascii to img <ok>
 - criptools y sus rsa y blog encriptado ilistrado ,cripto phone <ok>
 - dsoonmath <ok>

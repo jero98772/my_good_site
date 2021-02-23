@@ -1,2 +1,4 @@
 modelos preentredanados de curapeces para descarga directo 
 dataset publico
+
+tratar integrar https://github.com/uav4geo/LibreTranslate para el blog entre otros

@@ -273,12 +273,21 @@ def Mas1Dia(lastDate):
 	else:
 		return False
 def deleteFish(path):
+	"""
+	deleteFish(path) , delete a img of fish ,for data_basecsv
+	"""
 	if os.path.isfile(path+"fish") :			
 		os.remove(path+"fish")
 def deleteWithExt(path,ext):
+	"""
+	deleteWithExt(<file path>,<file extencion>) , delete file with file extencion
+	"""
 	if os.path.isfile(path+ext) :			
 		os.remove(path+ext)
 def deletefiles(path):
+	"""
+	deletefiles(path) , delete records of pandemaths
+	"""
 	if os.path.isfile(path+".txt"):
 		os.remove(path+".txt")
 	if os.path.isfile(path+".json"):
@@ -286,31 +295,49 @@ def deletefiles(path):
 	if os.path.isfile(path+".png") :			
 		os.remove(path+".png")
 def readtxtline(name):
+	"""
+	readtxtline(name), return frist line of file as string
+	"""
 	with open(name, 'r') as file:
 		return str(file.readline())
 def readtxt(name):
+	"""
+	readtxt(name) , return txt content as array ,element by line 
+	"""
 	content = []
 	with open(name+".txt", 'r') as file:
 		for i in file.readlines():
 			content.append(str(i).replace("\n",""))
 	return content
 def readtxtstr(name):
+	"""
+	readtxtstr(name) , return txt content as string
+	"""
 	content = ""
 	with open(name+".txt", 'r') as file:
 		for i in file.readlines():
 			content += str(i).replace("\n","")
 	return content
 def writetxt(name,content):
+	"""
+	writetxt(name,content) , write in txt file something  
+	"""
 	content =str(content)
 	with open(name+".txt", 'w') as file:
 		file.write(content)
 		file.close()
 def yesno(msg):
+	"""
+	yesno(msg) ,if msg == yes return True else return False 
+	"""
 	if msg.lower() == "yes":
 		return True
 	else:
 		return False
 def isEmpty(*args):
+	"""
+	isEmpty(*args), return True if all variable are filled
+	"""
 	for i in args:
 		if i != "":
 			return True  
@@ -318,26 +345,41 @@ def isEmpty(*args):
 			return False
 			break
 def allReplaceSimbols(txt):
+	"""
+	allReplaceSimbols(<string>) ,if have any delelte simbol that , return  string as integer
+	"""
 	for i in simbols:
 		if i in txt:
 			txt = txt.replace(i,"")
 	return int(txt)
 def date2int(date):
+	"""
+	date2int(date) convert date to int
+	"""
 	date = str(date)
 	intdate = date.replace(":","").replace("/","").replace(",","").replace(" ","")
 	return int(intdate)
 def limitsize(size,limit):
+	"""
+	limitsize(size,limit) return size if greater than limit return new size  
+	"""
 	size = int(size)
 	if size < int(limit):
 		return size
 	else:
 		return int(size/len(str(size)))
 def setLimit(value,limit):
+	"""
+	setLimit(value,limit) , return value or limit value
+	"""
 	if value < limit:
 		return value
 	else:
 		return limit
 def getExt(filename):
+	"""
+	getExt(filename) return extecion of file 
+	"""
 	isPoint = False
 	for i in str(filename):
 		if i == ".":
@@ -349,6 +391,9 @@ def getExt(filename):
 			ext += i
 	return ext
 def img2asciiart(img,size = 15,intensity = 255,replaceItem = 0,items = ["@"," "]):
+	"""
+	img2asciiart(img,size = 15,intensity = 255,replaceItem = 0,items = ["@"," "]) ,return a  matrix img as str
+	"""
 	import cv2
 	from numpy import asarray 
 	dataFile = cv2.imread(img,cv2.IMREAD_GRAYSCALE)
@@ -362,3 +407,19 @@ def img2asciiart(img,size = 15,intensity = 255,replaceItem = 0,items = ["@"," "]
 					imgstr[count,cont] = items[1]
 	outfig = [imgresized,imgstr]
 	return outfig 
+def setUpdate(dataname, data):
+	"""
+	generate update sentece for sqlite3 
+	"""
+	sentence = dataname[0]+" = "+ '"'+data[0]+'"'
+	for i ,ii in zip(dataname[1:] , data[1:]):
+		sentence += ','+i+" = "+ '"'+ii+'"'
+	return sentence
+def concatenateStrInList(arr):
+	"""
+	concatenates the numbers of a string, the elements of an array : return  integer
+	"""
+	intAsString = ""
+	for i in arr:
+		intAsString += i
+	return int(intAsString)

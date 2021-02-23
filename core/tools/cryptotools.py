@@ -40,6 +40,7 @@ def unpad(s):
 	return s[:-ord(s[len(s) - 1:])]
 def pad(s):
 	size = 16
+	s = str(s)
 	return s + (size - len(s) % size) * chr(size - len(s) % size)
 def enPassowrdHash(password):
 	password = str(password)
@@ -64,6 +65,7 @@ def encryptAES(text, password):
 	cipher = AES.new(private_key, AES.MODE_CBC, iv)
 	return base64.b64encode(iv + cipher.encrypt(text))
 def decryptAES(text, password):
+	print(text, password)
 	private_key = enPassowrdHash(password)
 	text = base64.b64decode(eval(text))
 	iv = text[:16]
