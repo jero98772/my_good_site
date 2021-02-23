@@ -20,10 +20,8 @@ class webpage():
 	urlWwwof = "/wwwof/"
 	urlProyects = "/proyects/"
 	wwwofDireccions = ["calcupH","drawFISHTANK","divePC","curapeces","fishproyectsEN","fishproyectsES","notasCurapeces","howproyects/howcalcupH_js","howproyects/howcurapeces","howproyects/howDrawfishtank","howproyects/howfishdb","data_basecsv"]
-	proyectsDireccions = ["aircolombia","htmlpower","htmlpower/little_recursion","htmlpower/iframe_power","pm25predict","pm25predict/pm25predictUnloquer","pm25predict/pm25predictCanairio","pandemaths","pandemathsout","DsoonMath","criptools","criptools/criptoretos","criptools/cesar","criptools/hashs","criptools/criptoolsencblog","criptools/rsa","criptools/criptophone","img2asciiart","gas","gas_login"]
-	#forgottenproyects = ["gas/actualisar<string:id>","gas/editar<string:id>","gas/eliminar/<string:id>"]
+	proyectsDireccions = ["aircolombia","htmlpower","htmlpower/little_recursion","htmlpower/iframe_power","pm25predict","pm25predict/pm25predictUnloquer","pm25predict/pm25predictCanairio","pandemaths","pandemathsout","DsoonMath","criptools","criptools/criptoretos","criptools/cesar","criptools/hashs","criptools/criptoolsencblog","criptools/rsa","criptools/criptophone","img2asciiart","gas","gas_login"]#,"gas/threads","gasinfo"]
 	try:
-		print("try")
 		distributedWebLink = readtxtline("data/distributionScript/web.txt")#REMBER the url cannot end with "/"
 		if webIsOniline(distributedWebLink):
 			otherwwwofDireccions= ["curapeces","data_basecsv"]
@@ -31,13 +29,10 @@ class webpage():
 			list(map(wwwofDireccions.remove,otherwwwofDireccions))
 			list(map(proyectsDireccions.remove,otherproyectsDireccions))
 			distributedWebWithIframe(urlWwwof,otherwwwofDireccions,app,distributedWebLink)
-			print("if")
 			distributedWebWithIframe(urlProyects,otherproyectsDireccions,app,distributedWebLink)
-			print(wwwofDireccions,proyectsDireccions)
 		joinWebpage(urlWwwof,wwwofDireccions,appwwwof,app)
 		joinWebpage(urlProyects,proyectsDireccions,appproyects,app)
 	except:
-		print("except")
 		joinWebpage(urlWwwof,wwwofDireccions,appwwwof,app)
 		joinWebpage(urlProyects,proyectsDireccions,appproyects,app)
 		joinWebpageGas(urlProyects,appproyects,app)

@@ -408,7 +408,18 @@ def img2asciiart(img,size = 15,intensity = 255,replaceItem = 0,items = ["@"," "]
 	outfig = [imgresized,imgstr]
 	return outfig 
 def setUpdate(dataname, data):
-	sentence = dataname[0]+" = "+ data[0]
+	"""
+	generate update sentece for sqlite3 
+	"""
+	sentence = dataname[0]+" = "+ '"'+data[0]+'"'
 	for i ,ii in zip(dataname[1:] , data[1:]):
-		sentence += ","+dataname[i]+" = "+ data[ii]
+		sentence += ','+i+" = "+ '"'+ii+'"'
 	return sentence
+def concatenateStrInList(arr):
+	"""
+	concatenates the numbers of a string, the elements of an array : return  integer
+	"""
+	intAsString = ""
+	for i in arr:
+		intAsString += i
+	return int(intAsString)

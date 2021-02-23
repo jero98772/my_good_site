@@ -5,8 +5,8 @@ my_good_site - 2020 - por jero98772
 my_good_site - 2020 - by jero98772
 """
 from flask import Flask, render_template, request, flash, redirect ,session
-from core.tools.webUtils import generatePassword , deletefiles ,minsTotales,hoyminsArr,writetxt,readtxt,readtxtstr,hoyminsStr,isEmpty,yesno,date2int,deleteWithExt,img2asciiart,limitsize,getExt ,setLimit ,setUpdate
-from core.tools.flaskUtils import multrequest 
+from core.tools.webUtils import generatePassword , deletefiles ,minsTotales,hoyminsArr,writetxt,readtxt,readtxtstr,hoyminsStr,isEmpty,yesno,date2int,deleteWithExt,img2asciiart,limitsize,getExt ,setLimit ,setUpdate ,concatenateStrInList
+from core.tools.flaskUtils import multrequest ,multrequestStr
 from core.tools.cryptotools import enPassowrdHash,enPassowrdStrHex ,cifrarcesar ,descifrarcesar ,chars ,rndkey ,encryptAES ,decryptAES,encryptRsa,decryptRsa,getrndPrime ,isPrime,genprimes ,genKey,encpalabranum,decpalabranum
 from core.tools.libWithoutSuport import shortcut
 from core.tools.dbInteracion import dbInteracion
@@ -263,76 +263,57 @@ class proyects():
 			deleteWithExt(imgdir+name,ext)
 		return render_template("proyects/img2asciiart/img2asciiart.html",out = outfig,size = size ,defaultvalues = defaultvalues )
 	"""#proyects without my suport#"""
+	@app.route(WEBPAGE+"gasinfo.html")
+	def gasinfo():
+			return render_template("proyects/gas/gasinfo.html")
 	@app.route(WEBPAGE+"gas.html", methods = ['GET','POST'])
 	def gas():
-		#dbPath = "data/dataBases"
 		priceCol = "price"
+		data = []
 		db = dbInteracion(DBNAMEGAS)
 		timenow = hoyminsStr()
-		#
-		#db = shortcut()
-		#
-		#tablas en las bases de datos
-		#login : pwd y usr
-		#gastos<usuario> : articulo ,categoria ,precio,cantidad  , asunto (buscar por asunto y filtrar),fecha
-		#si el articulo esta repetido sumarlo select sum( select count(cantidad) form gastos ) form  gastos , select count(cantidad) form gastos 
-		"""
-		veces ingresado *
-		cantidad de veces ingresado + cantidad ingresda de algo
-		cantidad de veces ingresado = select sum( select count( select cantidad from gatsos where articulo = (select DISTINCT articulo form gastos) ) form gastos ) form  gastos 
-		cantidad ingresda = SELECT SUM (cantidad) from gastos ,sum(select cantidad from gastos where articulo = (select DISTINCT articulo form gastos) )
-		"""
 		if not session.get('loged'):
 			return render_template('proyects/gas/gas_login.html')	
 		else:
 			user = session.get('user')
 			encpwd = session.get('encpwd')
 			db.connect(TABLEGAS+user)
-			rows = db.allDataList()
-			pricesum = db.getSum(priceCol)
-			priceavg = db.getAvg(priceCol)
-			if not ( pricesum  and priceavg  ):
-				priceavg = 0
-				pricesum = 0 
-			print(priceavg,pricesum)	
-			"""
-			db.execute(" SELECT * FROM gastos"+user)
-			rows = db.fetchall()
-			db.execute(" SELECT sum(price) FROM gastos"+user)
-			pricesum = db.fetchall()
-			db.execute(" SELECT avg(price) FROM gastos"+user)
-			priceavg = db.fetchall()
-			"""
-			print("if")
+			item_id =  db.getID()
+			rows = db.getDataGas()
+			keys = len(DATANAMEGAS)*[encpwd]
+			pricesum = 0
+			decdata =[]
+			i = 0
+			for row in rows:
+				decdata.append([concatenateStrInList(item_id[i])]+list(map(decryptAES,row,keys)))
+				pricesum += float(decdata[i][4])*float(decdata[i][5])
+				i += 1
+			try :
+				priceavg = pricesum / len(rows)
+			except :
+				priceavg = "no data" 
 			if request.method == 'POST':
-				print("map ->")
 				data = multrequest(DATANAMEGAS)
-				data = list(map(encryptAES , encpwd, data))
-				#ingresar data en la base de datos
-				"""
-				moment = str(request.form["moment"])
-				price = float(request.form["price"])
-				thing = str(request.form["thing"])
-				category = str(request.form["category"])
-				"""
-				#img = request.files.get("img_factura")
-				#values = [price,thing]
-				#valuesstr = ['price','thing']
+				data = list(map(encryptAES , data, keys))
+				data = list(map(str , data))
 				db.addGas(DATANAMEGAS,data)
-				#db.execute("INSERT INTO gastos{0}  (price,amount,item,category,thread,moment) VALUES ({1},'{2}','{3}','{4}');".format(user,price,thing,category,moment))
-				#db.connection.commit()
-				#db.close()
 				return redirect("/proyects/gas.html")
-				print("error")
-				print(type(rows),type(priceavg[0][0]),type(pricesum[0][0]),type(timenow),rows,priceavg[0][0],pricesum[0][0])
-			return render_template("proyects/gas/gas.html",purchases = rows,now=timenow,sum=pricesum[0],avg=priceavg[0])	
-	@app.route(WEBPAGE+'gas/threads', methods = ['GET','POST'])
+			return render_template("proyects/gas/gas.html",purchases = decdata,now=timenow,sum=pricesum,avg=priceavg)	
+	"""
+	@app.route(WEBPAGE+'gas/threads.html', methods = ['GET','POST'])
 	def gasThreads():
+		threadsNames = []
 		user = session.get('user')
+		encpwd = session.get('encpwd')
+		keys = len(DATANAMEGAS)*[encpwd]
 		db = dbInteracion(DBNAMEGAS)
 		db.connect(TABLEGAS+user)
-		threads = db.getColumn("thread")
-		return render_template("proyects/gas/gas_threads.html" , threads = threads)
+		threads = db.getDistinctColumnGAS("thread")
+		threads = list(map(decryptAES,threads,keys))
+		for thread in threads:
+			if thread not in threadsNames:
+				threadsNames.append(thread)
+		return render_template("proyects/gas/gas_threads.html" , threads = threadsNames)
 	@app.route(WEBPAGE+'gas/filter<string:thread>', methods = ['GET','POST'])
 	def gasFilter(thread):
 		user = session.get('user')
@@ -343,18 +324,9 @@ class proyects():
 		priceavg = db.getAvg(priceCol)
 		threadName = thread
 		return render_template("proyects/gas/thread.html" ,threads = threads , threadName = threadName)
+	"""
 	@app.route(WEBPAGE+"gas_login.html", methods=['GET', 'POST'])
 	def gaslogin():	
-		"""
-		db = shortcut()
-		db.execute(" SELECT usr FROM login")
-		users = db.fetchall()
-		db.execute(" SELECT pwd FROM login")
-		pwd = db.fetchall()
-		db.execute(" SELECT * FROM login")
-		rows = db.fetchall()
-		db.close()
-		"""
 		usr = request.form['username']
 		pwd = request.form["password"]
 		encpwd = enPassowrdStrHex(pwd+usr)
@@ -373,45 +345,35 @@ class proyects():
 	@app.route(WEBPAGE+'gas/actualisar<string:id>', methods = ['GET','POST'])
 	def update_gas(id):
 		user = session.get('user')
+		db = dbInteracion(DBNAMEGAS)
+		db.connect(TABLEGAS+user)
+		key = session.get('encpwd')
+		keys = len(DATANAMEGAS)*[key]
 		if request.method == 'POST':
 			data = multrequest(DATANAMEGAS)
-			list(map(encryptAES , data, encpwd))
-			db = dbInteracion(DBNAMEGAS)
-			db.connect(TABLEGAS+user)
-			db.updateGas(setUpdate(),id)
-			"""
-			price = float(request.form["price"])
-			thing = str(request.form["thing"])
-			category = str(request.form["category"])
-			moment = str(request.form["moment"])
-			img = request.files.get("img_factura")
-			values = [price,thing,category]
-			valuesstr = ['price','thing']
-			"""
-			#db.execute("UPDATE gastos{0} SET price={1},thing='{2}',category='{3}' ,moment='{4}' WHERE things_id = {5}; ".format(user,price,thing,category,moment, id))
+			encdata = list(map(encryptAES , data, keys))
+			encdata = list(map(str,encdata))
+			del key,keys,data
+			sentence = setUpdate(DATANAMEGAS,encdata)
+			db.updateGas(sentence,id)
 			flash(' Updated Successfully')
-			#db.connection.commit()
 		return redirect('/proyects/gas.html')
 	@app.route(WEBPAGE+'gas/editar<string:id>', methods = ['POST', 'GET'])
 	def get_gas(id):
 		user = session.get('user')
-		#db = shortcut()
-		#db.connection.cursor()
 		db = dbInteracion(DBNAMEGAS)
 		db.connect(TABLEGAS+user)
-		idData = db.getDataWhere("item_id",id)
-		#db.execute('SELECT * FROM gastos{0}  WHERE things_id = {1};'.format(user , id))
-		#rows = db.fetchall()
-		#db.close()
-		return render_template('proyects/gas/gas_update.html', purchase = idData[0])
+		key = session.get('encpwd')
+		keys = len(DATANAMEGAS)*[key]
+		rows = db.getDataGasWhere("item_id",id)[0]
+		idData = [id]+list(map(decryptAES,rows,keys))
+		del key,keys , user , rows
+		return render_template('proyects/gas/gas_update.html', purchase = idData )
 	@app.route(WEBPAGE+"gas/eliminar/<string:id>", methods = ['GET','POST'])
 	def gassdelete(id):
 		user = session.get('user')
 		db = dbInteracion(DBNAMEGAS)
 		db.connect(TABLEGAS+user)
 		db.deleteWhere("item_id",id)
-		#db = shortcut()
-		#db.execute('DELETE  FROM gastos{0} WHERE things_id = {1};'.format(user , id))
-		#db.connection.commit()
 		flash('you delete that')
 		return redirect('/proyects/gas.html')

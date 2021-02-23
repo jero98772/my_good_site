@@ -15,6 +15,12 @@ def multrequest(items):
 			item = str(item)
 		values.append(item)
 	return values
+def multrequestStr(items):	
+	values = []
+	for item in items:		
+		item = str(request.form.get(item))
+		values.append(item)
+	return values
 def joinWebpageGas(url,webApp,acualapp):	
 	@acualapp.route(url+'gas/editar<string:id>', methods = ['POST', 'GET'])
 	def gassdelete(id):
@@ -25,6 +31,11 @@ def joinWebpageGas(url,webApp,acualapp):
 	@acualapp.route(url+'gas/actualisar<string:id>', methods = ['GET','POST'])
 	def update_gas(id):
 		return webApp
+	"""
+	@acualapp.route(url+'gas/filter<string:thread>', methods = ['GET','POST'])
+	def gasFilter(thread):
+		return webApp
+	"""
 def joinWebpageDataBase_csv(url,webApp,acualapp):
 	url += "data_basecsv/" 
 	print(url)

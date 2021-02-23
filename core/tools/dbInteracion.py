@@ -85,48 +85,46 @@ class dbInteracion():
 		return self.lastday
 		"""
 	def allData(self):
-		self.dbcomand = " SELECT * FROM {0} ;".format(self.tableName)
+		dbcomand = " SELECT * FROM {0} ;".format(self.tableName)
+		self.cursor.execute(dbcomand)
+		alldata = self.cursor.fetchall()
+		return alldata
+	def getID(self):
+		dbcomand = " SELECT * FROM {0} ;".format(self.tableName)
+		self.cursor.row_factory = lambda cursor, row: list(str(int(row[0])))#
+		self.cursor.execute(dbcomand)
+		alldata = self.cursor.fetchall()
+		return alldata
+		self.cursor.row_factory = sqlite3.Row
+	def getColumn(self,row):
+		dbcomand = " SELECT {0} FROM {1} ;".format(row,self.tableName)
+		self.cursor.execute(dbcomand)
+		alldata = self.cursor.fetchall()
+		return alldata
+	def getDataWhere(self,row,equals):
+		dbcomand = " SELECT * FROM {0} WHERE {1} = {2} ;".format(self.tableName,row,equals)
 		self.cursor.execute(self.dbcomand)
 		self.alldata = self.cursor.fetchall()
-		return self.alldata
-	def allDataList(self):
-		self.dbcomand = " SELECT * FROM {0} ;".format(self.tableName)
-		self.cursor.row_factory = lambda cursor, row: row[0]
-		self.cursor.execute(self.dbcomand)
-		self.alldata = self.cursor.fetchall()
-		return self.alldata
-	def getColumn(self,column):
-		self.column = column
-		self.dbcomand = " SELECT {0} FROM {1} ;".format(self.column,self.tableName)
-		self.cursor.execute(self.dbcomand)
-		self.alldata = self.cursor.fetchall()
-		return self.alldata
-	def getDataWhere(self,column,equals):
-		self.equals = equals
-		self.column = column
-		self.dbcomand = " SELECT * FROM {0} WHERE {1} = {2} ;".format(self.tableName,self.column,self.equals)
-		self.cursor.execute(self.dbcomand)
-		self.alldata = self.cursor.fetchall()
-		return self.alldata
-	def getSum(self,column):
-		self.column = column
-		self.dbcomand = " SELECT sum({0}) FROM {1} ;".format(self.column,self.tableName)
-		self.cursor.execute(self.dbcomand)
-		self.alldata = self.cursor.fetchall()
-		return self.alldata
+		return alldata
+	def getSum(self,row):
+		dbcomand = " SELECT sum({0}) FROM {1} ;".format(row,self.tableName)
+		self.cursor.execute(dbcomand)
+		alldata = self.cursor.fetchall()
+		return alldata
+	def getDistinctColumn(self,row):
+		dbcomand = " SELECT DISTINCT {0} FROM {1} ;".format(row,self.tableName)
+		self.cursor.execute(dbcomand)
+		alldata = self.cursor.fetchall()
+		return alldata
 	def getAvg(self,column):
-		self.column = column
-		self.dbcomand = " SELECT avg({0}) FROM {1} ;".format(self.column,self.tableName)
+		dbcomand = " SELECT avg({0}) FROM {1} ;".format(column,self.tableName)
 		self.cursor.execute(self.dbcomand)
-		self.alldata = self.cursor.fetchall()
-		return self.alldata
+		alldata = self.cursor.fetchall()
+		return alldata
 	def deleteWhere(self,column,equals):
-		self.equals = equals
-		self.column = column
-		self.dbcomand = " DELETE FROM {0} WHERE {1} = {2} ;".format(self.tableName,self.column,self.equals)
-		self.cursor.execute(self.dbcomand)
-		self.alldata = self.cursor.fetchall()
-		return self.alldata
+		dbcomand = " DELETE FROM {0} WHERE {1} = {2} ;".format(self.tableName,column,str(equals))
+		self.cursor.execute(dbcomand)
+		self.cursor.connection.commit()
 	def putNewFishes(self,dbItems,data):
 		self.dbItems = dbItems
 		self.data = data
@@ -149,53 +147,63 @@ class dbInteracion():
 		self.cursor.execute(self.dbcomand)
 		self.cursor.connection.commit()
 	def getId(self,item):
-		self.item = item
-		self.dbcomand = 'SELECT * FROM {0} WHERE id = {1}'.format(self.tableName,self.item)
-		self.cursor.execute(self.dbcomand)
-		self.idFish = self.cursor.fetchall()
-		return self.idFish
+		dbcomand = 'SELECT * FROM {0} WHERE id = {1}'.format(self.tableName,item)
+		self.cursor.execute(dbcomand)
+		idFish = self.cursor.fetchall()
+		return idFish
 	def getLastId(self):
-		self.dbcomand = 'SELECT max(id) FROM {0} '.format(self.tableName)
-		self.cursor.execute(self.dbcomand)
-		self.lastFish = self.cursor.fetchall()
-		self.lastid = int(list( self.lastFish[0])[0])
-		return self.lastid
+		dbcomand = 'SELECT max(id) FROM {0} '.format(self.tableName)
+		self.cursor.execute(dbcomand)
+		lastid = self.cursor.fetchall()
+		lastid = int(list(lastid[0])[0])
+		return lastid
 	def numitems(self,item):
-		self.item = item
-		self.dbcomand = 'SELECT  length({0}) FROM {1} '.format(self.item ,self.tableName)
-		self.cursor.execute(self.dbcomand)
-		self.numItems = self.cursor.fetchall()
-		return self.numItems
+		dbcomand = 'SELECT  length({0}) FROM {1} '.format(item ,self.tableName)
+		self.cursor.execute(dbcomand)
+		numItems = self.cursor.fetchall()
+		return numItems
 	def putNewMsgsBlog(self,dbItems,data):
-		self.dbItems = dbItems
-		self.data = data
-		self.dbcomand = str("INSERT INTO {0} {1}  VALUES {2} ;".format(self.tableName,tuple(self.dbItems),tuple(self.data)))
-		self.cursor.execute(self.dbcomand)
+		dbcomand = str("INSERT INTO {0} {1}  VALUES {2} ;".format(self.tableName,tuple(dbItems),tuple(data)))
+		self.cursor.execute(dbcomand)
 		self.cursor.connection.commit()
 	def encBlog(self,value):
-		self.value = value
-		self.dbcomand = 'SELECT {0} FROM {1} ;'.format(self.value,self.tableName)
-		self.cursor.execute(self.dbcomand)
-		self.data = self.cursor.fetchall()
-		return self.data
+		dbcomand = 'SELECT {0} FROM {1} ;'.format(value,self.tableName)
+		self.cursor.execute(dbcomand)
+		alldata = self.cursor.fetchall()
+		return alldata
 	def addGas(self,dbItems,data ):
-		self.dbItems = dbItems
-		self.data = data
-		self.dbcomand = str("INSERT INTO {0} {1}  VALUES {2} ;".format(self.tableName,tuple(self.dbItems),tuple(self.data)))
-		print(self.dbcomand)
-		self.cursor.execute(self.dbcomand)
+		dbcomand = str("INSERT INTO {0} {1}  VALUES {2} ;".format(self.tableName,tuple(dbItems),tuple(data)))
+		self.cursor.execute(dbcomand)
 		self.cursor.connection.commit()
+	def getDataGasWhere(self,row,equals):
+		dbcomand = " SELECT * FROM {0} WHERE {1} = {2} ;".format(self.tableName,row,equals)
+		self.cursor.row_factory = lambda cursor, row: list(row[1:])
+		self.cursor.execute(dbcomand)
+		alldata = self.cursor.fetchall()
+		return alldata
+		self.cursor.row_factory = sqlite3.Row
+	def getDataGas(self):
+		dbcomand = " SELECT * FROM {0} ;".format(self.tableName)
+		self.cursor.row_factory = lambda cursor, row: list(row[1:])
+		self.cursor.execute(dbcomand)
+		alldata = self.cursor.fetchall()
+		return alldata
+		self.cursor.row_factory = sqlite3.Row
 	def updateGas(self,updateSentence, id):
-		self.updateSentence = updateSentence
-		self.id = id
-		self.dbcomand = str("UPDATE {0} SET {1} WHERE item_id = {2}; ".format((self.tableName),tuple(self.updateSentence),self.id))
-		self.cursor.execute(self.dbcomand)
+		dbcomand = str("UPDATE {0} SET {1} WHERE item_id = {2}; ".format((self.tableName),updateSentence,id))
+		self.cursor.execute(dbcomand)
 		self.cursor.connection.commit()
+	def getDistinctColumnGAS(self,row):
+		dbcomand = " SELECT DISTINCT {0} FROM {1} ;".format(row,self.tableName)
+		self.cursor.execute(dbcomand)
+		self.cursor.row_factory = lambda cursor, row: row[0]
+		alldata = self.cursor.fetchall()
+		return alldata
+		self.cursor.row_factory = sqlite3.Row
 	def getDistinctWhere(self,equals):
-		self.equals = equals
-		self.dbcomand = " SELECT DISTINCT * FROM {0} WHERE item_id = {1} ;".format(self.tableName,self.equals)
-		self.cursor.execute(self.dbcomand)
-		self.alldata = self.cursor.fetchall()
-		return self.alldata
+		dbcomand = " SELECT DISTINCT * FROM {0} WHERE item_id = {1} ;".format(self.tableName,equals)
+		self.cursor.execute(dbcomand)
+		alldata = self.cursor.fetchall()
+		return alldata
 	def closeDB(self):
 		self.cursor.close()
