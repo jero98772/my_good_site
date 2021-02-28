@@ -112,6 +112,7 @@ data/keys/*
 data/distributionScript/*
 data/modelsAI/*
 data/tmp/*
+data/dataBases/*
 core/static/img/blog/*
 core/static/img/wwwof/curapeces/*
 core/static/img/proyects/*
