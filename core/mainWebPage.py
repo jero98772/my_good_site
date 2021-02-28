@@ -20,7 +20,7 @@ class webpage():
 	urlWwwof = "/wwwof/"
 	urlProyects = "/proyects/"
 	wwwofDireccions = ["calcupH","drawFISHTANK","divePC","curapeces","fishproyectsEN","fishproyectsES","notasCurapeces","howproyects/howcalcupH_js","howproyects/howcurapeces","howproyects/howDrawfishtank","howproyects/howfishdb","data_basecsv"]
-	proyectsDireccions = ["aircolombia","htmlpower","htmlpower/little_recursion","htmlpower/iframe_power","pm25predict","pm25predict/pm25predictUnloquer","pm25predict/pm25predictCanairio","pandemaths","pandemathsout","DsoonMath","criptools","criptools/criptoretos","criptools/cesar","criptools/hashs","criptools/criptoolsencblog","criptools/rsa","criptools/criptophone","img2asciiart","gas","gas_login"]#,"gas/threads","gasinfo"]
+	proyectsDireccions = ["aircolombia","htmlpower","htmlpower/little_recursion","htmlpower/iframe_power","pm25predict","pm25predict/pm25predictUnloquer","pm25predict/pm25predictCanairio","pandemaths","pandemathsout","DsoonMath","criptools","criptools/criptoretos","criptools/cesar","criptools/hashs","criptools/criptoolsencblog","criptools/rsa","criptools/criptophone","img2asciiart","gas","gas_login","gasinfo"]#,"gas/threads"]
 	try:
 		distributedWebLink = readtxtline("data/distributionScript/web.txt")#REMBER the url cannot end with "/"
 		if webIsOniline(distributedWebLink):

@@ -49,9 +49,9 @@ class dbInteracion():
 		self.userTuple = (self.user,)
 		self.dbcomand =  "SELECT usr FROM {0} Where usr =  ? ".format(self.tableName)
 		self.cursor.execute(self.dbcomand,self.userTuple)
-		self.userHash = self.cursor.fetchall()
+		self.userDb = self.cursor.fetchall()
 		try:
-			if self.userHash[0] == self.userTuple :
+			if self.userDb[0] == self.userTuple :
 				return True
 			else :
 				return False

@@ -341,7 +341,7 @@ class proyects():
 			return redirect("/proyects/gas.html")
 		else:
 			flash('wrong password!')
-		return gas()
+		return proyects.gas()
 	@app.route(WEBPAGE+'gas/actualisar<string:id>', methods = ['GET','POST'])
 	def update_gas(id):
 		user = session.get('user')
