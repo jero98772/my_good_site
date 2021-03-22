@@ -11,7 +11,7 @@ import hashlib
 from random import randint
 from core.tools.webUtils import mayor,menor
 from math import gcd
-chars2 = " !#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnñopqrstuvwxyz{|}~"
+chars2 = " !#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNÑOPQRSTUVWXYZ[\\]^_`abcdefghijklmnñopqrstuvwxyz{|}~"
 letras = "abcdefghijklmnopqrstuvwxyz"
 nums = "234567890"
 numcode = ['22', '222', '2222', '33', '333', '3333', '44', '444', '4444', '55', '555', '5555', '66', '666', '6666', '77', '777', '7777', '77777', '88', '888', '8888', '99', '999', '9999', '99999']
