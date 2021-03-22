@@ -11,9 +11,10 @@ import hashlib
 from random import randint
 from core.tools.webUtils import mayor,menor
 from math import gcd
-chars = " !#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"
+chars2 = " !#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnñopqrstuvwxyz{|}~"
 letras = "abcdefghijklmnopqrstuvwxyz"
 nums = "234567890"
+numcode = ['22', '222', '2222', '33', '333', '3333', '44', '444', '4444', '55', '555', '5555', '66', '666', '6666', '77', '777', '7777', '77777', '88', '888', '8888', '99', '999', '9999', '99999']
 def isPrime(inputnum):
 	if inputnum < 2:
 		return False
@@ -71,7 +72,7 @@ def decryptAES(text, password):
 	cipher = AES.new(private_key, AES.MODE_CBC, iv)
 	mensaje =  unpad(cipher.decrypt(text[16:]))
 	return mensaje.decode()
-def cifrarcesar(text,key = rndkey, chares=chars):
+def cifrarcesar(text,key = rndkey, chars=chars2):
     cifrar = ""
     text = str(text)
     for char in text:
@@ -79,7 +80,7 @@ def cifrarcesar(text,key = rndkey, chares=chars):
             mod = int(num) % len(chars)
             cifrar = cifrar + (chars[mod])
     return  str(cifrar) 
-def descifrarcesar(text,key = rndkey,chares=chars):
+def descifrarcesar(text,key = rndkey,chars=chars2):
     descifrar = ""
     text = str(text)
     for char in text:
@@ -116,7 +117,7 @@ def genKey(key1,key2):
 def encryptRsa(msg,e,n):
 	cifrate = []
 	for i in msg:	
-		value = int(chars.index(i))
+		value = int(chars2.index(i))
 		enchar = (value**int(e))%int(n)
 		cifrate.append(enchar)
 	return cifrate
@@ -127,7 +128,7 @@ def decryptRsa(cifrate,d,n):
 	cifrate = eval(str(cifrate))
 	for value in cifrate:
 		dechar = int((int(value)**d)%n)
-		msg += chars[dechar]
+		msg += chars2[dechar]
 	return msg
 def getnum():
 	tecladoConNumeros = [] 
@@ -144,7 +145,6 @@ def getnum():
 		contadorletras +=1
 	return tecladoConNumeros
 def encpalabranum(palabra):
-	nums = getnum()
 	palabraenc = ""
 	for i in palabra:
 		try:
@@ -152,16 +152,15 @@ def encpalabranum(palabra):
 			palabraenc+=","
 		except:
 			pass
-		for ii in range(len(nums)):
+		for ii in range(len(numcode)):
 			if i == letras[ii]:
-				palabraenc += nums[ii]
+				palabraenc += numcode[ii]
 				palabraenc+=","
 		if i == " ":
 			palabraenc += "00"
 			palabraenc+=","
-	return palabraenc
+	return ","+palabraenc
 def decpalabranum(palbraenc):
-	nums = getnum()
 	palabra = ""
 	caracter = ""
 	for i in palbraenc:
@@ -170,7 +169,7 @@ def decpalabranum(palbraenc):
 				palabra += " "
 			else:
 				try:
-					palabra += letras[nums.index(caracter)]
+					palabra += letras[numcode.index(caracter)]
 				except:
 					palabra += str(caracter)
 			caracter = ""

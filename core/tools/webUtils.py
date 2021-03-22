@@ -397,15 +397,20 @@ def img2asciiart(img,size = 15,intensity = 255,replaceItem = 0,items = ["@"," "]
 	import cv2
 	from numpy import asarray 
 	dataFile = cv2.imread(img,cv2.IMREAD_GRAYSCALE)
-	imgresized  = cv2.resize(dataFile , (size, size)) 
-	imgstr = asarray(imgresized , dtype= str)
+	imgresized  = cv2.resize(dataFile , (size, size))
+	imgstr = ""
+	#imgstr = asarray(imgresized , dtype= str)
 	for count in range(len(imgresized)):
 		for cont in range(len(imgresized[count]))  :
 				if imgresized[count,cont]//intensity == replaceItem:
-					imgstr[count,cont]= items[0]
+					#imgstr[count,cont]= items[0]
+					imgstr += items[0]
 				else:
-					imgstr[count,cont] = items[1]
+					#imgstr[count,cont] = items[1]
+					imgstr += items[1]
+		imgstr += "\n"
 	outfig = [imgresized,imgstr]
+	print(imgstr)
 	return outfig 
 def setUpdate(dataname, data):
 	"""
@@ -423,3 +428,11 @@ def concatenateStrInList(arr):
 	for i in arr:
 		intAsString += i
 	return int(intAsString)
+def getImg(url,imgname):
+	"""
+	get image form url 
+	"""
+	import requests
+	imgrequ = requests.get(url).content
+	with open(imgname, "wb") as file:
+		file.write(imgrequ)
