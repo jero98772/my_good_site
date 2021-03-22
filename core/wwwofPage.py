@@ -124,4 +124,4 @@ class wwwof():
 		db = dbInteracion(dbpath)
 		db.connect(tableFishes)
 		rows = db.getId(id)
-		return render_template('wwwof/data_basecsv/updatefish.html', fish = rows[0])#, imgpath=imgchange)
+		return render_template('wwwof/data_basecsv/updatefish.html', fish = rows[0])

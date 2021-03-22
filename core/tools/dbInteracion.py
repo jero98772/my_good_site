@@ -1,8 +1,8 @@
 #!/usr/bin/env python 
 # -*- coding: utf-8 -*-"
 """
-hackido - 2020 - por jero98772
-hackido - 2020 - by jero98772
+my_good_site - 2020 - por jero98772
+my_good_site - 2020 - by jero98772
 """
 import sqlite3
 class dbInteracion():

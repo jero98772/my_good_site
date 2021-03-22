@@ -5,9 +5,9 @@ my_good_site - 2020 - por jero98772
 my_good_site - 2020 - by jero98772
 """
 from flask import Flask, render_template, request, flash, redirect ,session
-from core.tools.webUtils import generatePassword , deletefiles ,minsTotales,hoyminsArr,writetxt,readtxt,readtxtstr,hoyminsStr,isEmpty,yesno,date2int,deleteWithExt,img2asciiart,limitsize,getExt ,setLimit ,setUpdate ,concatenateStrInList
+from core.tools.webUtils import generatePassword , deletefiles ,minsTotales,hoyminsArr,writetxt,readtxt,readtxtstr,hoyminsStr,isEmpty,yesno,date2int,deleteWithExt,img2asciiart,limitsize,getExt ,setLimit ,setUpdate ,concatenateStrInList ,getImg
 from core.tools.flaskUtils import multrequest ,multrequestStr
-from core.tools.cryptotools import enPassowrdHash,enPassowrdStrHex ,cifrarcesar ,descifrarcesar ,chars ,rndkey ,encryptAES ,decryptAES,encryptRsa,decryptRsa,getrndPrime ,isPrime,genprimes ,genKey,encpalabranum,decpalabranum
+from core.tools.cryptotools import enPassowrdHash,enPassowrdStrHex ,cifrarcesar ,descifrarcesar ,chars2 ,rndkey ,encryptAES ,decryptAES,encryptRsa,decryptRsa,getrndPrime ,isPrime,genprimes ,genKey,encpalabranum,decpalabranum
 from core.tools.libWithoutSuport import shortcut
 from core.tools.dbInteracion import dbInteracion
 app = Flask(__name__)
@@ -210,21 +210,23 @@ class proyects():
 		return render_template("proyects/criptools/hashs.html",returnsha = msg) 
 	@app.route(WEBPAGE+"criptools/cesar.html" ,methods=['GET','POST'])
 	def cesar():
-		mensaje = ""
+		message = ""
 		key = rndkey()
-		charshtml = chars
+		charshtml = chars2
 		if request.method == 'POST':
 			option = str(request.form["optioncesar"])
 			key = int(request.form["key"])
 			cesartext = str(request.form["cesartext"])
-			charshtml = str(request.form["chars"])
+			newchars = str(request.form["chars"])
+			if newchars != charshtml:
+				charshtml = newchars
 			if option == "cifrate":
-				mensaje   = cifrarcesar(cesartext, key,str( charshtml))
+				message   = cifrarcesar(cesartext, key,str(charshtml))
 			elif option == "desifrate":
-				mensaje  = descifrarcesar(cesartext, key,str( charshtml))
+				message  = descifrarcesar(cesartext, key,str(charshtml))
 			else:
-				mensaje = ""
-		return render_template("proyects/criptools/cesar.html",charshtml = charshtml,resulthtml = mensaje,htmlkey=key) 
+				message = ""
+		return render_template("proyects/criptools/cesar.html",htmlchars = charshtml,resulthtml = message,htmlkey=key) 
 	@app.route(WEBPAGE+"criptools/criptophone.html",methods=['GET','POST'])
 	def criptophone():
 		newmsg = ""
@@ -244,22 +246,26 @@ class proyects():
 		imgdir = "core/static/img/proyects/img2ascii/"
 		name = "tmp"
 		defaurltFill = "@"
-		defaurltNoFill = "._."
+		defaurltNoFill = " "
 		intensity = 255
 		replaceValue = 0
 		defaultvalues = [defaurltFill,defaurltNoFill,replaceValue,intensity]
 		fillvalues = [defaurltFill,defaurltNoFill]
-		values = ["fillItem","noFillItem","size","intensity","replaceValue"]
+		values = ["fillItem","noFillItem","size","intensity","replaceValue","image","url"]
 		if request.method == 'POST':
-			imgfile = request.files["imgfile"]
 			data = multrequest(values)
-			ext = getExt(str(imgfile))
 			size = int(limitsize(int(data[2]),100))
 			defaultvalues = [data[0],data[1],data[4],data[3]]
 			fillvalues = [data[0],data[1]]
-			fileName = imgdir+name+ext
-			imgfile.save(fileName)
-			outfig = img2asciiart(fileName,size,data[3] , data[4],fillvalues)
+			fileName = imgdir+name
+			if data[5] == "file":
+				imgfile = request.files["imgfile"]
+				ext = getExt(str(imgfile))
+				imgfile.save(fileName+ext)
+			else:
+				ext = ".jpg"
+				getImg(data[6],fileName+ext)
+			outfig = img2asciiart(fileName+ext,size,data[3] , data[4],fillvalues)
 			deleteWithExt(imgdir+name,ext)
 		return render_template("proyects/img2asciiart/img2asciiart.html",out = outfig,size = size ,defaultvalues = defaultvalues )
 	"""#proyects without my suport#"""
