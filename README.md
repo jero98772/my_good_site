@@ -21,7 +21,8 @@ because have litle tool, modules and others ,that can help for various things li
 
 	python my_good_site.py 
 
-
+# contribute 	
+	- Bitcoin: bc1qf3eh6ssgzw2t3qyjk2gzwuskq4ctfk8375fg3r
 ## how i can run i my machine?
 install some dependences and go [localhost:9600](localhost:9600)
 

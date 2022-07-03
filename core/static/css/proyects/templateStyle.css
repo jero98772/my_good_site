@@ -55,12 +55,4 @@ ul, ol {
 
 	top:0px;
 }
-.frameDistrution {
-	width: 90%;
-	height: 80%;
-	/*margin: auto;*/
-	margin-left: auto;
-	margin-right: auto;
-	border:  5px solid rgba(0,0,0,0.7);
-	position: absolute; 
-}
+/* i dont wait this work how i like */

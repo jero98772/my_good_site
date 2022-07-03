@@ -7,7 +7,7 @@ my_good_site - 2020 - by jero98772
 from setuptools import setup, find_packages
 setup(
 	name='my_good_site',
-	version='2.7.5',
+	version='2.7.7',
 	license='GPLv3',
 	author_email='jero98772@protonmail.com',
 	author='jero98772',

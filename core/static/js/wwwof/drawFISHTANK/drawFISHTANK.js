@@ -1,15 +1,18 @@
 let dft ;
+
 function setup() {
-	canvas = createCanvas(750, 463, WEBGL) ;
+	canvas = createCanvas(350, 350, WEBGL) ;
 	dft = new fishtank();
 }
 function draw() {
 	background(150);
-	x = (windowWidth - width) / 2 ;
-	y = 300;
+	x = (windowWidth - width) / 2;
+	y = 215;
 	canvas.position(x, y);
-	Select = document.getElementById('select');
+	Select = document.From1.Selecion;
+	Select=document.getElementById('Selecion1');
 	seleccion = Select.options[Select.selectedIndex].value;
+	console.log(seleccion)
 	if (seleccion == 'rectagle') {
 		dft.rectangle()
 	}

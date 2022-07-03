@@ -119,3 +119,5 @@ core/static/img/proyects/*
 core/static/img/wwwof/data_basecsv/*
 core/static/reports/PandeMaths-report/*
 core/templates/blog/*
+core/templates/NO_blog/*
+fata/dataBfeelLog/token.txt

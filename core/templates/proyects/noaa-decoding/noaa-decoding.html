@@ -1,0 +1,21 @@
+{% extends  'proyects/template.html'%}
+{% block content %}
+<form method="post"  enctype="multipart/form-data" >
+	<h1>Noaa siganal processing</h1>
+	<label>input file</label>
+	<input type="file" name="file">
+	<br>
+	<label>resampled?</label>
+	<input type="checkbox" name="resample" value="True">
+	<br>
+	<input type="submit" name="">
+	<br>
+	<br>
+	<div class="codeIt">
+	<h3>reference:</h3>
+		https://medium.com/swlh/decoding-noaa-satellite-images-using-50-lines-of-code-3c5d1d0a08da
+
+	</div>
+</form>
+{% endblock  %}
+

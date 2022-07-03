@@ -1,8 +1,8 @@
 #!/usr/bin/env python 
 # -*- coding: utf-8 -*-"
 """
-my_good_site - 2020 - por jero98772
-my_good_site - 2020 - by jero98772
+hackido - 2020 - por jero98772
+hackido - 2020 - by jero98772
 """
 import sqlite3
 class dbInteracion():
@@ -49,9 +49,9 @@ class dbInteracion():
 		self.userTuple = (self.user,)
 		self.dbcomand =  "SELECT usr FROM {0} Where usr =  ? ".format(self.tableName)
 		self.cursor.execute(self.dbcomand,self.userTuple)
-		self.userDb = self.cursor.fetchall()
+		self.userHash = self.cursor.fetchall()
 		try:
-			if self.userDb[0] == self.userTuple :
+			if self.userHash[0] == self.userTuple :
 				return True
 			else :
 				return False

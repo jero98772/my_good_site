@@ -5,18 +5,16 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-<link rel="shortcut icon"  href="http://wiki.unloquer.org/_media/personas/jero98772/icon.ico"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Word Wide Web of Fish</title>
 </head>
 <body>
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/wwwof/templateStyle.css')}}">
 <center>
-		<div id="header">	
+		<div id="header">
 		<ul class="bar">
 			<li><a href="/">main menu</a></li>
-				<li><a href="{{howproyects}}">howProyects/how is made this proyects   </a>						
+				<li><a href="{{howproyects}}">howProyects/how is made this proyects   </a>
 					<ul>
 						<li><a href="{{howproyects}}howcalcupH_js.html">howcalcuph</a>	</li>
 						<li><a href="{{howproyects}}howDrawfishtank.html">howdrawFISHTANK</a>	</li>
@@ -38,14 +36,14 @@
 						<li><a href="{{wwwof}}drawFISHTANK.html">drawFISHTANK</a></li>
 						<li><a href="{{wwwof}}divePC.html">divePC</a></li>
 						<li><a href="{{wwwof}}curapeces.html">curapeces</a></li>
-						<li><a href="{{wwwof}}data_basecsv.html">data_basecsv</a></li>
+						<li><a href="{{wwwof}}data_basecsv.html">data_basecsv (out of service)</a></li>
 						<li><a href="{{wwwof}}" onclick="alert('you are now in wwwof')">WWWoF</a></li>
 					</ul>
 				</li>
 				<li><a href="">source  </a>
 					<ul>
 						<li><a href="https://github.com/jero98772/calcupH_js">calcuPH</a> </li>
-						<li><a href="https://github.com/jero98772/DrawFishtank">drawFISHTANK</a></li>
+						<li><a href="https://github.com/jero98772/dibujo_acuario_p5js">drawFISHTANK</a></li>
 						<li><a href="http://wiki.unloquer.org/personas/jero98772/requeriminetos-para-semihacker/proyectos-sueltos/wwwof/divepc/start">divePC</a></li>
 						<li><a href="https://github.com/jero98772/curapeces">curapeces</a></li>
 					<!--li><a href="bechmarck.html">bechmarck</a></li-->
@@ -82,21 +80,10 @@
 	<br>
 	<br>
 	<br>
-	{% if false %}
-		{% for i in range(25)%}
-			<br>
-		{% endfor %}
-	{% endif %}	
-	<div id="webContent">
+
 {% block content %}
 
 {% endblock %}
-</div>
-	{% if false %}
-		{% for i in range(25)%}
-			<br>
-		{% endfor %}
-	{% endif %}	
 <br>
 <br>
 <br>
@@ -104,18 +91,16 @@
 <br>
 <br>
 <div id="end" style="background-color: rgb(0,0,155,0.7);">
-	<a href="https://gitlab.com/jero98772
-"><img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F1%2F18%2FGitLab_Logo.svg%2F1108px-GitLab_Logo.svg.png&f=1&nofb=1" height="100" width="100"></a>
 	<a href="https://github.com/jero98772"><img src="https://img.pngio.com/github-logo-icon-of-glyph-style-available-in-svg-png-eps-ai-github-icon-png-256_256.png" height="100" width="100"></a>
 	<a href="mailto:curapeces@gmail.com">
 	<img src="{{ url_for('static', filename='img/mail.png')}}" height="100" width="100">
 	</a>
-	<a href="/donacionbtc.html">
+	<!--a href="/donacionbtc.html">
 	<span onclick='alert("bitcoin wallet: \n bc1qf3eh6ssgzw2t3qyjk2gzwuskq4ctfk8375fg3r")'>
-		
+
 	<img src="https://bitcoin.org/img/icons/opengraph.png?1584741964" height="100" width="100">
 	</span>
-	</a>
+	</a-->
 	<img src="http://wiki.unloquer.org/_media/wiki/logo.png" height="100" width="100">
 	<img src="https://arteymedios.org/media/k2/items/cache/92c3523de61d06eebdc515f2babb64b9_XL.jpg" height="100" width="100">
 	<img src="https://blog.powerdata.es/hs-fs/hub/239039/file-1056751617-png/images/opensource-logo-resized-600.png"height="100" width="100" >

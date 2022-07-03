@@ -14,27 +14,35 @@
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/proyects/templateStyle.css')}}">
 	<center>
 		<div id="header">
-			
+
 		<ul class="bar">
 			<li><a href="/">main menu</a></li>
 
 
 				<li><a href=""> proyects in this web   </a>
 					<ul>
-						<li><a href="{{proyects}}aircolombia.html">aircolombia</a> </li>
-						<li><a href="{{proyects}}htmlpower.html">htmlpower</a> </li>
+						<li><a href="https://alotrolado.herokuapp.com/">Alotrolado</a> </li>
+						<li><a href="https://resetes.herokuapp.com/">Resetes</a> </li>
 						<li><a href="{{proyects}}criptools.html">criptools</a> </li>
 						<li><a href="{{proyects}}gas.html">gas</a> </li>
 						<li><a href="{{proyects}}img2asciiart.html">img2asciiart</a> </li>
+						<li><a href="{{proyects}}noaa.html">noaa decoding</a> </li>
 						<li><a href="{{proyects}}hackido.html">hackido (new version in proces)</a> </li>
 						<li><a href="{{proyects}}pm25predict.html">pm25predict</a> </li>
 						<li><a href="{{proyects}}DsoonMath.html">DsoonMath</a> </li>
 						<li><a href="{{proyects}}pandemaths.html">PandeMaths</a> </li>
+						<li><a href="{{proyects}}htmlpower.html">htmlpower</a> </li>
+						<li><a href="{{proyects}}aircolombia.html">aircolombia</a> </li>
 
 					</ul>
 				</li>
 				<li><a href="https://github.com/jero98772"> source  </a>
 					<ul>
+						<li><a href="https://github.com/jero98772/AlOtroLado">AlOtroLado</a> </li>
+						<li><a href="https://github.com/jero98772/resetes">resetes</a> </li>
+						<li><a href="https://github.com/jero98772/B-FeelLog">B-FeelLog</a> </li>
+						<li><a href="https://github.com/jero98772/Noaa-decoding">Noaa-decoding</a> </li>
+						<li><a href="https://github.com/jero98772/PandeMaths">Web PandeMaths</a> </li>
 						<li><a href="https://github.com/jero98772/https://github.com/jero98772/toma_nota/tree/master/clases/clase%23_12__otros__2020-05-22/algunos_test/revistas/html_recursion">htmlpower (toma_nota_Uni) </a> </li>
 						<li><a href="https://github.com/jero98772/toma_nota/tree/master/clases/clase%23_12__otros__2020-05-22/algunos_test/tests_hackido/encriptar_de_a_usuario_flask">  criptoblog (toma_nota_Uni)</a> </li>
 						<li><a href="https://github.com/jero98772/gpgforall">gpgforall</a> </li>
@@ -46,7 +54,7 @@
 
 					</ul>
 				</li>
-				
+
 
 				<li><a href="">about proyctes</a>
 					<ul>
@@ -80,7 +88,7 @@
 		{% for i in range(25)%}
 			<br>
 		{% endfor %}
-	{% endif %}	
+	{% endif %}
 	<div id="webContent">
 {% block content %}
 
@@ -90,7 +98,7 @@
 		{% for i in range(25)%}
 			<br>
 		{% endfor %}
-	{% endif %}	
+	{% endif %}
 <br>
 <br>
 <br>
@@ -101,17 +109,16 @@
 <br>
 <div id="end" style="background-color: orange;">
 	<a href="https://gitlab.com/jero98772
-"><img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F1%2F18%2FGitLab_Logo.svg%2F1108px-GitLab_Logo.svg.png&f=1&nofb=1" height="100" width="100"></a>
+"><img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.ivankrizsan.se%2Fwp-content%2Fuploads%2F2018%2F06%2Fgitlab-logo.png&f=1&nofb=1" height="100" width="100"></a>
 	<a href="https://github.com/jero98772"><img src="https://img.pngio.com/github-logo-icon-of-glyph-style-available-in-svg-png-eps-ai-github-icon-png-256_256.png" height="100" width="100"></a>
 	<a href="mailto:jero98772@protonmail.com">
 	<img src="{{ url_for('static', filename='img/mail.png')}}" height="100" width="100">
 	</a>
-	<a href="/donacionbtc.html">
+	<!--a href="/donacionbtc.html">
 	<img src="https://bitcoin.org/img/icons/opengraph.png?1584741964" height="100" width="100">
 	</span>
-	</a>
+	</a-->
 	<img src="http://wiki.unloquer.org/_media/wiki/logo.png" height="100" width="100">
-
 	<img src="https://blog.powerdata.es/hs-fs/hub/239039/file-1056751617-png/images/opensource-logo-resized-600.png"height="100" width="100" >
 	<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Open-source-hardware-logo.svg/200px-Open-source-hardware-logo.svg.png" height="100" width="100" >
 </div>

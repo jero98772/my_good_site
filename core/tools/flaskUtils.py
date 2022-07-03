@@ -48,6 +48,16 @@ def joinWebpageDataBase_csv(url,webApp,acualapp):
 	@acualapp.route(url+'<string:id>', methods = ['GET','POST'] )
 	def get_fish(id):
 		return webApp
+
+def joinWebpageNoaa(url,webApp,acualapp):
+	print(url)#"noaaoutr/<string:name>",
+	@acualapp.route(url+"noaaout/<string:name>", methods = ['GET','POST'])
+	def noaaout(name):
+		return webApp
+	@acualapp.route(url+"noaaoutr/<string:name>", methods = ['GET','POST'])
+	def noaaoutr(name):
+		return webApp
+
 def joinWebpage(url,direccions,webApp,acualapp):	
 		for webroute in direccions:		
 			@acualapp.route(url+str(webroute)+".html", endpoint=webroute , methods=['GET','POST'])

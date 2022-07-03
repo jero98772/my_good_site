@@ -5,6 +5,7 @@ my_good_site - 2020 - por jero98772
 my_good_site - 2020 - by jero98772
 """
 import os
+import time
 import datetime
 #import subprocess
 from random import randint
@@ -175,9 +176,9 @@ def dias2mes(dias):
 	i = 0
 	while mes >= i :
 		mesI = i%12
-		if esMesesCon31dias[30+mesI] == 31:
+		if months31Days[30+mesI] == 31:
 			meses += 1
-		elif esMesesCon31dias[30-2] == "feb28":
+		elif months31Days[30-2] == "feb28":
 			meses += 1
 		else:
 			meses += 1
@@ -192,9 +193,9 @@ def meses2Dias(mes):
 	i = 0
 	while mes >= i :
 		mesI = i%12
-		if esMesesCon31dias[mesI]:
+		if months31Days[mesI]:
 			dias += 31
-		elif esMesesCon31dias[mesI] == "feb28":
+		elif months31Days[mesI] == "feb28":
 			dias += 28
 		else:
 			dias += 30
@@ -224,6 +225,11 @@ def hoyminsStr():
 	"""
 	hoy = datetime.datetime.today().strftime("%m/%d/%Y, %H:%M")
 	return hoy
+def ahora():
+	"""
+	return date and hours and minutes as string
+	"""
+	return str(datetime.datetime.now())
 def diasTotales(dia):
 	"""
 	diasTotales(<date with days ,months and yeards as array[yeards,months,days]>)
@@ -318,12 +324,17 @@ def readtxtstr(name):
 		for i in file.readlines():
 			content += str(i).replace("\n","")
 	return content
-def writetxt(name,content):
+def writetxt(name,content,mode="w"):
 	"""
 	writetxt(name,content) , write in txt file something  
 	"""
 	content =str(content)
-	with open(name+".txt", 'w') as file:
+	with open(name+".txt", mode) as file:
+		file.write(content)
+		file.close()
+def writeText(name,content,option = "a"):
+	content = str(content)
+	with open(name, option) as file:
 		file.write(content)
 		file.close()
 def yesno(msg):
@@ -390,6 +401,8 @@ def getExt(filename):
 				break
 			ext += i
 	return ext
+def getName(string,sep="/"):
+	return string[len(string)-(string[::-1]).index(sep):] 
 def img2asciiart(img,size = 15,intensity = 255,replaceItem = 0,items = ["@"," "]):
 	"""
 	img2asciiart(img,size = 15,intensity = 255,replaceItem = 0,items = ["@"," "]) ,return a  matrix img as str
@@ -410,7 +423,6 @@ def img2asciiart(img,size = 15,intensity = 255,replaceItem = 0,items = ["@"," "]
 					imgstr += items[1]
 		imgstr += "\n"
 	outfig = [imgresized,imgstr]
-	print(imgstr)
 	return outfig 
 def setUpdate(dataname, data):
 	"""
@@ -436,3 +448,238 @@ def getImg(url,imgname):
 	imgrequ = requests.get(url).content
 	with open(imgname, "wb") as file:
 		file.write(imgrequ)
+def fresample(data,fs,resample = 4):
+	data = data[::resample]
+	fs = fs//resample
+	return data,fs
+def noaaTool(name,imgfolder,doResample=False):
+	print(name,imgfolder)
+	import scipy.io.wavfile as wav
+	import scipy.signal as signal
+	import numpy as np
+	from PIL import Image
+	import matplotlib.pyplot as plt
+	fs, data = wav.read(name)
+	if doResample:
+		fresample(data,fs,resample = 4)
+	data_crop = data[20*fs:21*fs]
+	analytical_signal = signal.hilbert(data)
+	data_am = np.abs(analytical_signal)
+	frame_width = int(0.5*fs)
+	w, h = frame_width, data_am.shape[0]//frame_width
+	image = Image.new('RGB', (w, h))
+	px, py = 0, 0
+	#fill image
+	for p in range(data_am.shape[0]):
+		lum = int(data_am[p]//32 - 32)
+		if lum < 0: lum = 0
+		if lum > 255: lum = 255
+		image.putpixel((px, py), (0, lum, 0))
+		px += 1
+		if px >= w:
+			#if (py % 50) == 0:
+			#    print(f"Line saved {py} of {h}")
+			px = 0
+			py += 1
+			if py >= h:
+				break
+	image = image.resize((w, 4*h))
+	plt.imshow(image)
+	#plt.show()
+	filename=getName(name).replace(".wav",".png")
+	plt.savefig(imgfolder+filename)
+	return (imgfolder+filename).replace("core/static/","")
+def blogNames(path,tag = ".html"):
+	folderFiles = os.listdir(path)
+	files = []
+	for i in folderFiles:
+		if i[-5:] != tag:
+			name =  [i+"__"+ii for ii in os.listdir(path+i)] 
+			files += name
+		else: 
+			files +=  [i]
+	return files
+
+def filesInFolders(path,tag = ".html"):
+	folderFiles = os.listdir(path)
+	files = []
+	for i in folderFiles:
+		if i[-5:] != tag:
+			name =  [i+"/"+ii for ii in os.listdir(path+i)] 
+			files += name
+		else: 
+			files +=  [i]
+	return files
+def blogsNames(path,tag = ".html"):
+	blogs = os.listdir(path)
+	names = []
+	for i in blogs:
+		if i[-5:] == tag:
+			names.append(i[:-5])
+		else:
+			names.append(i)
+	return names
+def getPrimaryLanguage(languages):
+	for language in languages:
+		if language[0].isupper():
+			return language
+			break
+def clearName(txt,exludeChars,notavailablenames,limit=0,errorMsg = ["the name have some exlude characters , plese only use numeric and upper or lower case letters","the name exlucde the number of characters, limit is: "]):
+	if txt in notavailablenames:
+		msg = errorMsg[0]
+		okName = False
+	if exludeChars != "":
+		for i in txt:
+			if i in exludeChars:
+				msg = errorMsg[0]
+				okName = False
+				break
+			else: 
+				msg = ""
+				okName = True	
+	if len(txt) > limit :
+		okName = False
+		msg = errorMsg[1]+str(limit)+" of characters"
+	return okName ,msg
+def createFile(name,content=""):
+	content =str(content)
+	with open(name, 'x') as file:
+		file.write(" ")
+		file.close()
+def changeName(txt):
+	newname = ""
+	if txt[-1:] == " ":
+		newname = txt[:-1]
+	newname.replace(" ","_")
+	return newname
+def deleteFiles(path,selectedFiles):
+	for i in selectedFiles:
+		os.remove(path+file)
+def moveFiles(path,name,replacechar = "__"):
+	topicName = name[:name.index(replacechar)]
+	folderFile =  path+topicName+"/"
+	numOfFiles = len(os.listdir(folderFile))
+	print(numOfFiles)
+	if numOfFiles == 1:
+		createFile(folderFile[:-1]+".html", readFile(folderFile+topicName))
+def deleteAndMove(deletename,path,names,replacechar="__"):
+	for file in deletename:
+		print(path,file)
+		if "__" in file:
+			fileName = file.replace("__","/")
+			dirName = file[:file.index("__")]
+			numOfFiles = len(os.listdir(path+dirName+"/"))
+			print(numOfFiles)
+			if numOfFiles == 2:os.remove(path+fileName)
+			if numOfFiles == 1:os.remove(path+fileName);os.rmdir(path+dirName)			
+		else:
+			os.remove(path+file)
+def upadateAuthor(author,newAuthor,path ):
+	newContent = readFile(path).replace(author,newAuthor)
+	writetxt(path,newContent,option="w")
+def webTranslate(txt,writeIn,translateTo):
+	"""
+	webTranslate(txt,writeIn,translateTo )
+	  - txt			  -text to trasnlate
+	  - writeIn		  -in which language is it written
+	  - translateTo	  -language to be translated
+	rember language prefix
+	en -> english
+	es -> spanish 
+	...
+	"""
+	from deep_translator import GoogleTranslator 
+	translatedTxt = GoogleTranslator(source=writeIn, target=translateTo).translate(txt)
+	return translatedTxt
+def manageTranslate(writeIn,translateTo):
+	try:
+		translateTo[translateTo.index(writeIn)] = ""
+	except:
+		pass 
+def doHtmlInit(name,content):
+	return f"""
+<!DOCTYPE html>
+<html lang="en">
+	<meta charset="UTF-8"> 
+	<head>
+		<title>blog {name}</title>
+	</head>
+	<body>
+			<h1>{name}</h1>
+			<br>
+		<center>
+			<hr>
+			{content}
+		</center>
+	</body>
+</html>
+	"""
+def doHtml(txtp,txtq,id,who):
+	now = time.ctime()
+	return f"""
+<div id="{id}">
+<h2>{txtp}</h2>
+<br>
+<table width = "420">
+	<tr>
+		<td>
+			<p>{txtq}</p>
+		</td>
+	</tr>
+</table>
+<p>{now},by {who}.</p>
+</div>
+<hr>
+"""
+def readFile(name):
+	with open(name, 'r') as file:
+		content = ""
+		for i in file.readlines():
+			content += str(i).replace("\n","")
+		return content
+def readLine(name):
+	with open(name, 'r') as file:
+		return file.readline()
+def readCode(name):
+	content = ""
+	with open(name, 'r') as file:
+		for i in file.readlines():
+			content += str(i)
+		return content
+
+def genTokenFile(filename):
+	try :
+		if readLine(filename) == "":
+			pass
+	except:
+		writetxt(filename,genToken())
+def manyblogs(path):
+	return len(os.listdir(path))
+def blogsview(path,app):
+	blogpath = path[path.index("templates/")+len("templates/"):] 
+	blogs = os.listdir(path)
+	for blog in blogs:
+		@app.route("/"+blogpath+str(blog), endpoint=blog[:-5] )
+		def site():
+			return render_template(blogpath+blog) 
+	return site()
+def genBlogPreview(name,path=""):
+	txt = f'\n\t@app.route("/blog/{name}")\n\tdef {str(name[:-5]).replace("/","")}():\n\t\treturn render_template("blog/{name}")'
+	return txt
+def updateBlog(dirs,dataDir):
+    newCode = """from flask import Flask, render_template
+app = Flask(__name__)
+class blogs():"""
+    for i in dirs:
+        newCode += genBlogPreview(i)
+    writeText(dataDir,newCode,"w")
+    #tryng to move to emacs is ... a disasters with tabs 
+def writeblog(name,content,option = "ab+",replaceTo="<!--addition-->"):
+	if content == "":
+		initTemplate = "{% extends  'template.html'%}{% block content %}"
+		endTemplate = "{% endblock %}"
+		content = initTemplate+content+replaceTo+endTemplate
+		newContent =  content 
+	else:
+		newContent = readFile(name).replace(replaceTo,content+replaceTo)
+	writeText(name,newContent,option="w")

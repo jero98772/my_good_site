@@ -1,6 +1,6 @@
 from influxdb import InfluxDBClient
 import matplotlib.pyplot as plt
-import numpy as np 
+import numpy as np
 #pendiente para unlouqer y canairio
 class pm25predict:
 	def __init__(self,db,host):
@@ -43,7 +43,7 @@ def fpm25preditc(name,pm25):
 	pm25 = np.asanyarray(pm25)
 	epochs = epoch.reshape((1,-1))
 	pm25s = pm25.reshape((1,-1))
-	y = pm25s 
+	y = pm25s
 	for i in y:
 		sumy +=y
 	b = sumy/len(epochs)
@@ -60,10 +60,10 @@ def fpm25preditc(name,pm25):
 	plt.title("predict")
 	plt.plot(epoch,pm25,'bo',label='pm25')
 	plt.plot(epochs*2,Y,"go",label='prediction')
-	plt.savefig('core/static/img/proyects/pm25predict/preditc_'+name+'.png')
-	plt.clf() 
+	plt.savefig('my_good_site/core/static/img/proyects/pm25predict/preditc_'+name+'.png')
+	plt.clf()
 def genpredsunloquer(db,host):
-	aqa = pm25preditc(db,host)
+	aqa = pm25predict(db,host)
 	sensornames = aqa.SensorsName()
 	working = []
 	for i in sensornames:
@@ -77,5 +77,5 @@ def genpredsunloquer(db,host):
 		#print(sensor)
 	return working
 def genpredscanairio(db):
-	canairio = pm25preditc(db)
+	canairio = pm25predict(db)
 	canairio.setup(name)

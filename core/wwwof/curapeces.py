@@ -14,6 +14,9 @@ from tensorflow.python.keras.layers import Dropout, Flatten, Dense, Activation
 from tensorflow.python.keras.layers import  Convolution2D, MaxPooling2D
 from tensorflow.python.keras.preprocessing.image import load_img, img_to_array
 from tensorflow.python.keras.models import load_model
+#from tensorflow.python.keras import backend as K
+#import cv2
+#test class curapeces (methot save_nn save nn? or not work)
 class curapeces():
     #K.clear_session()
     directorio="./static/www_of/img/datos_limpios"
@@ -21,7 +24,8 @@ class curapeces():
     alturadelaimagen = 32
     longituddelaimagen= 32
     numerodeimagenesamandar=4 
-    pasos=400
+    pasos=400#numero de veces que se va aprosesar la informacion
+    validacon=100
     filtroprimeravez= 32
     filtrosegundavez= 64
     filtroterceravez= 32
@@ -33,22 +37,26 @@ class curapeces():
     filtrocutro=(4,4)
     filtroquinto=(5,5)
     pulido=(2,2)
-    numerodenfermedades=14
+    numerodenfermedades=14# cambiar mientras encuenbtro imagenes y la sano cuenta como enfermedad
+    #numerodenfermedades=2
     lr = 0.0004
+
     def image(self):
-        entrenamiento_datagen = ImageDataGenerator(
+        self.entrenamiento_datagen = ImageDataGenerator(
             rescale=1. / 255,
             shear_range=0.2,
             zoom_range=0.2,
             horizontal_flip=True)
-        test_datagen = ImageDataGenerator(rescale=1. / 255)
-        self.entrenamiento_generador = entrenamiento_datagen.flow_from_directory(
+
+        self.test_datagen = ImageDataGenerator(rescale=1. / 255)
+
+        self.entrenamiento_generador = self.entrenamiento_datagen.flow_from_directory(
             self.directorio,
             target_size=(self.alturadelaimagen, self.longituddelaimagen),
             batch_size=self.numerodeimagenesamandar,
             class_mode='categorical')
 
-        self.validacion_generador = test_datagen.flow_from_directory(
+        self.validacion_generador = self.test_datagen.flow_from_directory(
             self.directorio,
             target_size=(self.alturadelaimagen, self.longituddelaimagen),
             batch_size=self.numerodeimagenesamandar,
@@ -70,9 +78,9 @@ class curapeces():
         return nn
     def save_nn(self,path):
         self.nn=curapeces.nn()
-        numFolder = len(os.listdir(path))
-        target_dir = path+"/model"+str(numFolder)
-        os.mkdir(target_dir)
+        self.numFolder = len(os.listdir(path))
+        self.newPath = path+"/model"+str(self.numFolder)
+        os.mkdir(newPath)
         self.nn.save(str(self.target_dir)+ '/model.h5')
         self.nn.save_weights(str(self.target_dir) +'/weights.h5')
 class predict():
@@ -80,7 +88,7 @@ class predict():
     numfolders = 0
     #imagenpez = cv2.imread(pez, cv2.IMREAD_COLOR)
     modelsFolder = "data/modelsAI/"
-    numfolders = len(os.listdir(modelsFolder))
+    numfolders=len(os.listdir(modelsFolder))
     modelfolder =modelsFolder+str(numfolders)
     model = modelfolder+"/model.h5"
     weights = modelfolder+"/weights.h5"
@@ -94,15 +102,13 @@ class predict():
     def predict(self):
       self.nn =  load_model(self.model)
       self.nn.load_weights(self.weights)
-      x = load_img(self.pez, target_size=(self.longitud, self.altura))
-      x = img_to_array(x)
-      x = np.expand_dims(x, axis=0)
-      array = self.nn.predict(x)
-      result = array[0]
-      self.answer = np.argmax(result)
+      self.x = load_img(self.pez, target_size=(self.longitud, self.altura))
+      self.x = img_to_array(self.x)
+      self.x = np.expand_dims(self.x, axis=0)
+      self.array = self.nn.predict(self.x)
+      self.result = self.array[0]
+      self.answer = np.argmax(self.result)
     def pChosePredeictionEs(self,answer):
-      if not answer:
-        self.answer = answer
       if self.answer == 0:
         print("prediccion:  atcado o tumor y deformidad")
       elif self.answer ==1 :
@@ -133,8 +139,6 @@ class predict():
         print("prediccion: es un pez sano")
       return self.answer
     def ChosePredeictionEs(self,answer):
-      if not answer:
-        self.answer = answer
       if self.answer == 0:
         sickness="prediccion:  atcado o tumor y deformidad"
       elif self.answer ==1 :
@@ -165,8 +169,6 @@ class predict():
         sickness="prediccion: es un pez sano"
       return sickness
     def ChosePredeictionEn(self,answer):
-      if not answer:
-        self.answer = answer
       if self.answer == 0:
         sickness="prediccion: attacked ,tumor or deformity"
       elif self.answer ==1 :

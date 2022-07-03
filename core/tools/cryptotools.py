@@ -176,3 +176,7 @@ def decpalabranum(palbraenc):
 		else:
 			caracter+=i
 	return palabra
+def genToken():
+	from time import ctime 
+	now = ctime()
+	return enPassowrdStrHex(str(now))
